@@ -1,0 +1,25 @@
+body {
+  font-family: Gordita, Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  margin: 0;
+  max-height: 100vh;
+  overflow: auto;
+  --padding-sides: 0px;
+  font-size: 16px;
+}
+
+.h3 {
+  font-size: 18px;
+}
+.h2 {
+  font-size: 20px;
+}
+.h1 {
+  font-size: 24px;
+}
+
+@media (min-width: 1100px  ) {
+  body { --padding-sides: 4vw; }
+}
+@media (min-width: 1300px  ) {
+  body { --padding-sides: 6vw; }
+}
