@@ -53,7 +53,7 @@ export default function Home() {
   return <div class={style.main}>
     <div class={style.about_me_layer}>
       <div class={style.photo_circle}>
-        <img src="images/ivan-angulo-profile.webp" alt="" />
+        <img src="images/ivan-angulo-profile.webp" alt="ivan angulo reyna profile" />
       </div>
       <div class={`${style.letter}`}>
         <h1 class="h1 bold">Iván J. Angulo Reyna</h1>

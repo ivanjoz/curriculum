@@ -3,13 +3,13 @@
     "file": "assets/client-e692de99.css",
     "src": "\u0000virtual:#vinxi/handler/client.css"
   },
-  "_HttpStatusCode-6c19f9d3.js": {
+  "_HttpStatusCode-6900f32c.js": {
     "dynamicImports": [
       "src/routes/[...404].tsx?pick=default&pick=$css",
       "src/routes/about.tsx?pick=default&pick=$css",
       "src/routes/index.tsx?pick=default&pick=$css"
     ],
-    "file": "assets/HttpStatusCode-6c19f9d3.js"
+    "file": "assets/HttpStatusCode-6900f32c.js"
   },
   "_index-c9b8959c.js": {
     "file": "assets/index-c9b8959c.js",
@@ -25,11 +25,11 @@
     "src": "node_modules/shikiji/dist/onig.wasm"
   },
   "src/routes/[...404].tsx?pick=default&pick=$css": {
-    "file": "assets/_...404_-01b8f3b3.js",
+    "file": "assets/_...404_-87a5edc0.js",
     "imports": [
       "_web-195d4417.js",
       "_index-c9b8959c.js",
-      "_HttpStatusCode-6c19f9d3.js"
+      "_HttpStatusCode-6900f32c.js"
     ],
     "isDynamicEntry": true,
     "isEntry": true,
@@ -46,14 +46,14 @@
     "src": "src/routes/about.tsx?pick=default&pick=$css"
   },
   "src/routes/index.css": {
-    "file": "assets/index-1444ccba.css",
+    "file": "assets/index-fad793b3.css",
     "src": "src/routes/index.css"
   },
   "src/routes/index.tsx?pick=default&pick=$css": {
     "css": [
-      "assets/index-1444ccba.css"
+      "assets/index-fad793b3.css"
     ],
-    "file": "assets/index-1a02bd04.js",
+    "file": "assets/index-ca555893.js",
     "imports": [
       "_web-195d4417.js"
     ],
@@ -65,9 +65,9 @@
     "css": [
       "assets/client-e692de99.css"
     ],
-    "file": "assets/client-a57a68db.js",
+    "file": "assets/client-bc3d1f24.js",
     "imports": [
-      "_HttpStatusCode-6c19f9d3.js",
+      "_HttpStatusCode-6900f32c.js",
       "_index-c9b8959c.js",
       "_web-195d4417.js"
     ],
