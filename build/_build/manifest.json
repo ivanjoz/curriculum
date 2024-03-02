@@ -1,0 +1,77 @@
+{
+  "\u0000virtual:#vinxi/handler/client.css": {
+    "file": "assets/client-e692de99.css",
+    "src": "\u0000virtual:#vinxi/handler/client.css"
+  },
+  "_HttpStatusCode-6c19f9d3.js": {
+    "dynamicImports": [
+      "src/routes/[...404].tsx?pick=default&pick=$css",
+      "src/routes/about.tsx?pick=default&pick=$css",
+      "src/routes/index.tsx?pick=default&pick=$css"
+    ],
+    "file": "assets/HttpStatusCode-6c19f9d3.js"
+  },
+  "_index-c9b8959c.js": {
+    "file": "assets/index-c9b8959c.js",
+    "imports": [
+      "_web-195d4417.js"
+    ]
+  },
+  "_web-195d4417.js": {
+    "file": "assets/web-195d4417.js"
+  },
+  "node_modules/shikiji/dist/onig.wasm": {
+    "file": "assets/onig-fd885c2d.wasm",
+    "src": "node_modules/shikiji/dist/onig.wasm"
+  },
+  "src/routes/[...404].tsx?pick=default&pick=$css": {
+    "file": "assets/_...404_-01b8f3b3.js",
+    "imports": [
+      "_web-195d4417.js",
+      "_index-c9b8959c.js",
+      "_HttpStatusCode-6c19f9d3.js"
+    ],
+    "isDynamicEntry": true,
+    "isEntry": true,
+    "src": "src/routes/[...404].tsx?pick=default&pick=$css"
+  },
+  "src/routes/about.tsx?pick=default&pick=$css": {
+    "file": "assets/about-0ef788dd.js",
+    "imports": [
+      "_web-195d4417.js",
+      "_index-c9b8959c.js"
+    ],
+    "isDynamicEntry": true,
+    "isEntry": true,
+    "src": "src/routes/about.tsx?pick=default&pick=$css"
+  },
+  "src/routes/index.css": {
+    "file": "assets/index-1444ccba.css",
+    "src": "src/routes/index.css"
+  },
+  "src/routes/index.tsx?pick=default&pick=$css": {
+    "css": [
+      "assets/index-1444ccba.css"
+    ],
+    "file": "assets/index-1a02bd04.js",
+    "imports": [
+      "_web-195d4417.js"
+    ],
+    "isDynamicEntry": true,
+    "isEntry": true,
+    "src": "src/routes/index.tsx?pick=default&pick=$css"
+  },
+  "virtual:#vinxi/handler/client": {
+    "css": [
+      "assets/client-e692de99.css"
+    ],
+    "file": "assets/client-a57a68db.js",
+    "imports": [
+      "_HttpStatusCode-6c19f9d3.js",
+      "_index-c9b8959c.js",
+      "_web-195d4417.js"
+    ],
+    "isEntry": true,
+    "src": "virtual:#vinxi/handler/client"
+  }
+}
