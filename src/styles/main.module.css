@@ -43,14 +43,28 @@
  width: 14vw;
  height: 14vw;
  border-radius: 50%;
- background-color: white;
- box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, 
-  rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+ background-color: black;
+ box-shadow: rgba(50, 50, 93, 0.3) 0px 13px 27px -5px, 
+  rgba(0, 0, 0, 0.35) 0px 8px 16px -8px;
+  overflow:hidden;
 }
+
+.photo_circle > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+ }
 
 .letter {
   margin-top: 1rem;
   color: white;
+}
+.location {
+  color: white;
+}
+.location_container {
+  align-content: center;
+  align-items: center;
 }
 .table_header {
   width: calc(1.2rem + 0.7vw);
@@ -160,4 +174,18 @@
 }
 .skill_card_container {
   flex-wrap: wrap;
+}
+
+.social_icon {
+  width: 3.4rem;
+  height: 3.4rem;
+  position: relative;
+  margin: 6px;
+  background-color: rgba(0, 0, 0, 0.26);
+  border-radius: 50%;
+  padding: 3px;
+}
+.social_icon > img {
+  width: 100%;
+  height: 100%;
 }

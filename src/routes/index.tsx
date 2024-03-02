@@ -1,7 +1,8 @@
-import { JSX } from "solid-js";
-import { ITechnologies, IWordExperience, foda, technologies, studies, workExperience, skills, diaHabitual, IStudy, experienciaAdicional } from "~/content";
-import style from "../styles/main.module.css";
-import { parseSVG } from "~/helpers";
+import { JSX } from "solid-js"
+import { ITechnologies, IWordExperience, foda, technologies, studies, workExperience, skills, diaHabitual, IStudy, experienciaAdicional, socialNetworks } from "~/content"
+import style from "../styles/main.module.css"
+import icon_location from '../../public/images/icon-location.svg?raw'
+import { parseSVG } from "~/helpers"
 
 interface ISkillsColumns {
   name: string
@@ -52,16 +53,30 @@ export default function Home() {
   return <div class={style.main}>
     <div class={style.about_me_layer}>
       <div class={style.photo_circle}>
-        <i>*</i>
+        <img src="images/ivan-angulo-profile.webp" alt="" />
       </div>
       <div class={`${style.letter}`}>
         <h1 class="h1 bold">Iván J. Angulo Reyna</h1>
       </div>
+      <div class={`flex ${style.location_container}`}>
+        <img src={parseSVG(icon_location)} alt="" 
+          style={{ "margin-right": '3px', width: '1rem', height: '1rem' }} />
+        <div class={`h3 ${style.location}`}>Trujillo - Perú</div>
+      </div>
+      <div class={`h3 ${style.location}`}>ivan@un.pe</div>
       <div class={style.letter}>
-        <h2 class="h2 bold">Software Developer FullStack</h2>
+        <h2 style={{ "margin-bottom": '0' }} class="h2 bold">Software Developer FullStack</h2>
       </div >
-      <div class={style.letter} style={{ padding: '16px', "text-align": 'center' }}>
-        Programador Backend con Node.Js, Go y C# con conocimientos en cloud con AWS, Linux, frontend con React y bases de datos SQL.
+      <div class={style.letter} style={{ padding: '8px', "text-align": 'center' }}>
+        + 5 años de experiencia desarrollando sistemas cloud con Node.Js, Go y C# y AWS, Linux, frontend con React y bases de datos SQL.
+      </div>
+      <div class="flex">
+      { socialNetworks.map(e => {
+          return <div class={style.social_icon}>
+            <img src={parseSVG(e.icon)} alt="" />
+          </div>
+        })
+      }
       </div>
     </div>
     <div class={style.content}>
@@ -206,7 +221,7 @@ const StudyCard = (props: IStudyCard) => {
       </div>
       <div>
         <div class="h2 bold tt-c1">{props.args.name}</div>
-        <div>{props.args.role}</div>
+        <div>{props.args.content}</div>
       </div>
     </div>
     <div>

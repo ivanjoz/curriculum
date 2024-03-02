@@ -14,6 +14,10 @@ import platzi_logo_svg from '../public/images/platzi-logo2.svg?raw'
 import universidad_upao_svg from '../public/images/universidad_upao.svg?raw'
 import universidad_upn_svg from '../public/images/universidad_upn.svg?raw'
 
+import linkedin_icon_svg from '../public/images/linkedin-icon.svg?raw'
+import github_icon_svg from '../public/images/github-icon.svg?raw'
+import medium_icon_svg from '../public/images/medium-icon.svg?raw'
+
 export const diaHabitual = [
   { percent: 72, 
     content: { 
@@ -32,6 +36,18 @@ export const diaHabitual = [
       es: "Reuniones de coordinación, daylis y mentoría",
       en: "Reuniones de coordinación, daylis y mentoría"
     }
+  }
+]
+
+export const socialNetworks = [
+  { icon: github_icon_svg
+
+  },
+  { icon: linkedin_icon_svg
+
+  },
+  { icon: medium_icon_svg
+
   }
 ]
 
