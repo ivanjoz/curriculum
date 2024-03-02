@@ -1,10 +1,24 @@
 body {
-  font-family: Gordita, Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: main;
   margin: 0;
   max-height: 100vh;
   overflow: auto;
   --padding-sides: 0px;
+  --side-layer-width: 25vw;
   font-size: 16px;
+  color: rgb(39, 38, 41);
+}
+
+*, :after, :before {
+  box-sizing: border-box;
+}
+
+@font-face { 
+  font-family: 'main'; src: url("/libs/cofo_sans.woff2"); 
+ /* font-family: 'main'; src: url("/libs/nunito-v12-latin-regular.woff"); */
+}
+@font-face { 
+  font-family: 'bold'; src: url("/libs/cofo_sans_600.woff2") 
 }
 
 .h3 {
@@ -16,10 +30,30 @@ body {
 .h1 {
   font-size: 24px;
 }
+.bold { 
+  font-family: bold;
+}
+.tt-c1 {
+  color: rgb(83, 86, 175);
+}
+.w100 { width: '100%'; }
+.ta-c { text-align: center; }
 
-@media (min-width: 1100px  ) {
-  body { --padding-sides: 4vw; }
+h1, h2, h3, h4, h5, h6 {
+  margin: 0.6rem 0;
 }
-@media (min-width: 1300px  ) {
-  body { --padding-sides: 6vw; }
+.flex { display: flex; }
+
+@media (min-width: 1140px  ) {
+  body { 
+    --padding-sides: 4vw; 
+    --side-layer-width: 24vw;
+  }
 }
+@media (min-width: 1340px  ) {
+  body { 
+    --padding-sides: 6vw; 
+    --side-layer-width: 23vw;
+  }
+}
+

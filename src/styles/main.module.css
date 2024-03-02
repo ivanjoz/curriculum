@@ -4,28 +4,39 @@
   height: 100vh;
   overflow: auto;
   display: flex;
-  padding-left: calc(24vw + var(--padding-sides));
+  padding-left: calc(var(--side-layer-width) + var(--padding-sides));
 }
 
 .content {
-  background-color: white;
+  background-color: rgb(243 243 248);
   width: 100%;
-  height: 120vh;
+  height: 100%;
   padding: 1rem;
   margin-right: var(--padding-sides);
+  overflow: auto;
 }
 
 .about_me_layer {
-  padding-top: 1rem;
+  padding: 1rem 0.6vw 0 0.6vw;
   top: 0;
   left: var(--padding-sides);
   height: 100vh;
   background-color: rgb(72 73 97);
-  width: 24vw;
+  width: var(--side-layer-width);
   position: fixed;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+
+@media (max-width: 960px  ) {
+  .about_me_layer {
+    display: none;
+  }
+  body { 
+    --side-layer-width: 0px; 
+  }
 }
 
 .photo_circle {
@@ -40,4 +51,113 @@
 .letter {
   margin-top: 1rem;
   color: white;
+}
+.table_header {
+  width: calc(1.2rem + 0.7vw);
+}
+
+.table_cell {
+  text-align: center;
+}
+.cell_line {
+  min-height: 3px;
+  width: 100%;
+  background-color: rgb(133, 77, 236);
+  position: absolute;
+  bottom: 2px;
+}
+.table_main {
+  border-collapse: collapse;
+  background-color: white;
+  padding: 8px;
+  border: 4px solid white;
+  box-shadow: rgb(0 0 0 / 11%) 0px 2px 12px -2px;
+  margin: 8px;
+  flex-shrink: 0;
+}
+.table_main > tbody > tr > td:first-child {
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+.table_main td {
+  padding: 0;
+  position: relative;
+  height: 21px;
+  border-bottom: 1px solid #eeecf7;
+}
+
+.table_main > tbody > tr:nth-child(2n) {
+  background-color: #f4f1ff;
+}
+
+
+.table_card {
+  background-color: white;
+  margin: 6px;
+  box-shadow: rgb(0 0 0 / 11%) 0px 2px 12px -2px;
+  padding: 6px;
+  border-radius: 6px;
+}
+
+.table_card {
+  background-color: white;
+  margin: 6px;
+  box-shadow: rgb(0 0 0 / 11%) 0px 2px 12px -2px;
+  padding: 8px;
+  border-radius: 6px;
+}
+
+.table_card_container {
+  width: '100%';
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.table_card_image_ctn {
+  width: 7vw;
+  height: 4.5vw;
+  position: relative;
+  margin-bottom: 4px;
+}
+
+.table_card_image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.foda_card {
+  background-color: white;
+  margin: 6px;
+  box-shadow: rgb(0 0 0 / 11%) 0px 2px 12px -2px;
+  padding: 8px;
+  border-radius: 6px;
+}
+
+.skill_card {
+  background-color: white;
+  margin: 6px;
+  box-shadow: rgb(0 0 0 / 11%) 0px 2px 12px -2px;
+  padding: 8px;
+  border-radius: 2rem;
+  max-width: 11rem;
+  text-align: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.skill_image {
+  width: auto;
+  height: 3.4rem;
+}
+
+.skill_descrip {
+  margin: auto;
+}
+.skill_card_container {
+  flex-wrap: wrap;
 }
