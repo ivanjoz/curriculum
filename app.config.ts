@@ -11,9 +11,14 @@ console.log("IS_PROD:", IS_PRD)
 console.log(process.env)
 */
 export default defineConfig({
-  ssr: false,
+  ssr: IS_PRD,
   server: {
     preset: "githubPages",
+    prerender: {
+      // autoSubfolderIndex: true,
+      routes: ["/"],
+      // crawlLinks: true,
+    }
   },
   solid: {
     hot: false,

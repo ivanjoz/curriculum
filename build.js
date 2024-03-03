@@ -15,11 +15,13 @@ for(const folder of buildSubFolder){
   const staticPath = folder ? path.join(staticFolder,folder) : staticFolder
 
   console.log("Copiando al folder destino: ", staticPath)
-  if(fs.existsSync(staticPath)){
-    fs.rmSync(staticPath, { recursive: true, force: true })
+  if(folder){
+    if(fs.existsSync(staticPath)){
+      fs.rmSync(staticPath, { recursive: true, force: true })
+    }
+    fs.mkdirSync(staticPath)
   }
-  fs.mkdirSync(staticPath)
-
+  
   const files = fs.readdirSync(buildPath)
 
   for(const file of files){
