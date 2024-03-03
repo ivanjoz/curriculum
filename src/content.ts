@@ -192,9 +192,9 @@ export const workExperience: IWordExperience[] = [
   { company: "Upwork",
     logo: upworkLogoSVG,
     description: [
-      "Desarrollo de un sistemas web con React, Node y MongoDB: Catálogo de cursos para institución educativa",
-      "Desarrollo de un gestor de contenidos para páginas web con JavaScript",
-      "Desarrollo de un sistema de búsqueda de empleo y scraping con React, Node.js y PostgreSQL"
+      "Desarrollo de sistemas web con React, Node y MongoDB: Catálogo de cursos para institución educativa",
+      "Desarrollo de gestor de contenidos para páginas web con JavaScript",
+      "Desarrollo de sistema de búsqueda de empleo y scraping con React, Node.js y PostgreSQL"
     ],
     role: "Freelance Software Developer"
   },
@@ -202,8 +202,8 @@ export const workExperience: IWordExperience[] = [
     logo: logoUnicoreSVG,
     role: "Software Developer & Founder",
     description: [
-      "Desarrollo de un sistema empresarial con módulos de ventas, finanzas, logística, productos y facturación electrónica usando PostgreSQL, DynamoDB, Node.js, React.js y WebSockets",
-      "Desarrollo de un páginas webs con CMS e integración con plataformas de pago.",
+      "Desarrollo de sistema empresarial con módulos de ventas, finanzas, logística, productos y facturación electrónica usando PostgreSQL, DynamoDB, Node.js, React.js y WebSockets",
+      "Desarrollo de páginas webs con CMS e integración con plataformas de pago.",
       "Uso de AWS Lambda, S3, EC2 y Linux VPCs y Bash",
     ]
   },

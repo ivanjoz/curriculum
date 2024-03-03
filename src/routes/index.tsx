@@ -25,7 +25,7 @@ const getContent = (content: string | { en?: string, es?: string }): string => {
 export default function Home() {
 
   const columns: ISkillsColumns[] = [
-    { name: "", setContent: e => e.name }, 
+    { name: "", setContent: e => <div class={style.table_cell_1}>{e.name}</div> }, 
   ]
 
   for(let year = yearInicio; year <= yearFin; year++) {
@@ -51,56 +51,34 @@ export default function Home() {
   }
 
   return <div class={style.main}>
-    <div class={style.about_me_layer}>
-      <div class={style.photo_circle}>
-        <img src="images/ivan-angulo-profile.webp" alt="ivan angulo reyna profile" />
-      </div>
-      <div class={`${style.letter}`}>
-        <h1 class="h1 bold">Iván J. Angulo Reyna</h1>
-      </div>
-      <div class={`flex ${style.location_container}`}>
-        <img src={parseSVG(icon_location)} alt="" 
-          style={{ "margin-right": '3px', width: '1rem', height: '1rem' }} />
-        <div class={`h3 ${style.location}`}>Trujillo - Perú</div>
-      </div>
-      <div class={`h3 ${style.location}`}>ivan@un.pe</div>
-      <div class={style.letter}>
-        <h2 style={{ "margin-bottom": '0' }} class="h2 bold">Software Developer FullStack</h2>
-      </div >
-      <div class={style.letter} style={{ padding: '8px', "text-align": 'center' }}>
-        + 5 años de experiencia desarrollando sistemas cloud con Node.Js, Go y C# y AWS, Linux, frontend con React y bases de datos SQL.
-      </div>
-      <div class="flex">
-      { socialNetworks.map(e => {
-          return <div class={style.social_icon}>
-            <img src={parseSVG(e.icon)} alt="" />
-          </div>
-        })
-      }
-      </div>
-    </div>
+    <AboutMeLayer css={style.about_me_layer}/>
+    <AboutMeLayer css={style.about_me_layer_inline}/>
     <div class={style.content}>
       <h2 class="bold">Tecnologías / Años de Experiencia</h2>
-      <div style={{ width: '100%', display: 'flex' }}>
-        <table class={style.table_main}>
-          <thead>
-            <tr>
-              {columns.map(e => <th class={e.headerCss}>{e.name}</th>)}
-            </tr>
-          </thead>
-          <tbody>
-            {technologies.map(e => {
-              return <tr>
-              { columns.map(c => {
-                return <td class={c.cellCss}>
-                    {c.setContent(e)}
-                  </td>
-                }) 
-              }
+      <div class={`flex w100 ${style.tecnologias_container}`}>
+        <div class={style.table_main_container}>
+          <table class={`w100 ${style.table_main}`}>
+            <thead>
+              <tr>
+                {columns.map(e => <th>
+                  <div class={e.headerCss}>{e.name}</div>
+                </th>)}
               </tr>
-            })}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {technologies.map(e => {
+                return <tr>
+                { columns.map(c => {
+                  return <td class={c.cellCss}>
+                      {c.setContent(e)}
+                    </td>
+                  }) 
+                }
+                </tr>
+              })}
+            </tbody>
+          </table>
+        </div>
         <div style={{ "flex-grow": 1, "margin-left": '1vw', display: 'flex', "flex-direction": 'column' }}>
           <div class="bold h3 tt-c1">
             Experiencia adicional en:
@@ -175,6 +153,45 @@ export default function Home() {
             return <StudyCard args={e} />
           })
         }
+      </div>
+    </div>
+  </div>
+}
+
+interface IAboutMeLayer {
+  css: string
+}
+
+const AboutMeLayer = (props: IAboutMeLayer) => {
+  return <div class={props.css}>
+    <div>
+      <div class={style.photo_circle}>
+        <img src="images/ivan-angulo-profile.webp" alt="ivan angulo reyna profile" />
+      </div>
+      <div class={`${style.letter}`}>
+        <h1 class="h1 bold">Iván J. Angulo Reyna</h1>
+      </div>
+      <div class={`flex ${style.location_container}`}>
+        <img src={parseSVG(icon_location)} alt="" 
+          style={{ "margin-right": '3px', width: '1rem', height: '1rem' }} />
+        <div class={`h3 ${style.location}`}>Trujillo - Perú</div>
+      </div>
+      <div class={`h3 ${style.location}`}>ivan@un.pe</div>
+    </div>
+    <div>
+      <div class={style.letter}>
+        <h2 style={{ "margin-bottom": '0' }} class="h2 bold">Software Developer FullStack</h2>
+      </div >
+      <div class={`${style.letter} ${style.about_me}`} style={{ padding: '8px', "text-align": 'center' }}>
+        5+ años de experiencia desarrollando sistemas cloud con Node.Js, Go y C# y AWS, Linux, frontend con React y bases de datos SQL.
+      </div>
+      <div class="flex">
+      { socialNetworks.map(e => {
+          return <div class={style.social_icon}>
+            <img src={parseSVG(e.icon)} alt="" />
+          </div>
+        })
+      }
       </div>
     </div>
   </div>
