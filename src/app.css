@@ -5,6 +5,7 @@ body {
   overflow: auto;
   --padding-sides: 0px;
   --side-layer-width: 25vw;
+  --content-padding: 1rem;
   font-size: 16px;
   color: rgb(39, 38, 41);
 }

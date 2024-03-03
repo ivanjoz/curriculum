@@ -2,6 +2,7 @@ import { JSX } from "solid-js"
 import { ITechnologies, IWordExperience, foda, technologies, studies, workExperience, skills, diaHabitual, IStudy, experienciaAdicional, socialNetworks } from "~/content"
 import style from "../styles/main.module.css"
 import icon_location from '../../public/images/icon-location.svg?raw'
+import icon_email from '../../public/images/email-icon.svg?raw'
 import { parseSVG } from "~/helpers"
 
 interface ISkillsColumns {
@@ -176,7 +177,6 @@ const AboutMeLayer = (props: IAboutMeLayer) => {
           style={{ "margin-right": '3px', width: '1rem', height: '1rem' }} />
         <div class={`h3 ${style.location}`}>Trujillo - Perú</div>
       </div>
-      <div class={`h3 ${style.location}`}>ivan@un.pe</div>
     </div>
     <div>
       <div class={style.letter}>
@@ -187,11 +187,19 @@ const AboutMeLayer = (props: IAboutMeLayer) => {
       </div>
       <div class="flex">
       { socialNetworks.map(e => {
-          return <div class={style.social_icon}>
+          return <div class={style.social_icon} onclick={ev => {
+            ev.stopPropagation()
+            window.open(e.url)
+          }}>
             <img src={parseSVG(e.icon)} alt="" />
           </div>
         })
       }
+      </div>
+      <div class={`flex ${style.email_icon}`}>
+        <img src={parseSVG(icon_email)} alt="" 
+            style={{ "margin-right": '6px', width: '1rem', height: '1rem' }} />
+        <div class={`h3 ${style.location}`}>ivan@un.pe</div>
       </div>
     </div>
   </div>

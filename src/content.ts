@@ -40,14 +40,14 @@ export const diaHabitual = [
 ]
 
 export const socialNetworks = [
-  { icon: github_icon_svg
-
+  { icon: github_icon_svg,
+    url: "https://github.com/ivanjoz/"
   },
-  { icon: linkedin_icon_svg
-
+  { icon: linkedin_icon_svg,
+    url: "https://www.linkedin.com/in/anguloivan/"
   },
-  { icon: medium_icon_svg
-
+  { icon: medium_icon_svg,
+    url: "https://medium.com/@angivan"
   }
 ]
 
