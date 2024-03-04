@@ -15,7 +15,14 @@
   margin-right: var(--padding-sides);
   overflow: auto;
 }
-
+.experiencia_container {
+  flex-grow: 1;
+  margin-left: 1.2rem; 
+  flex-direction: column;
+}
+.title {
+  color: #403a56
+}
 .dot {
   width: 8px;
   height: 8px;
@@ -165,7 +172,9 @@
   padding: 6px 6px 6px 8px;
   border-radius: 6px;
 }
-
+.work_year {
+  color: #71718b
+}
 .table_card_container {
   width: '100%';
   display: grid;
@@ -365,6 +374,9 @@
   }
   .foda_card {
     margin-bottom: 10px;
+  }
+  .experiencia_container {
+    margin-left: 1.4vw;
   }
   table tr > th:nth-of-type(odd) > .table_header {
     margin-bottom: 1.2rem;

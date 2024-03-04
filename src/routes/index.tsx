@@ -80,12 +80,12 @@ export default function Home() {
             </tbody>
           </table>
         </div>
-        <div style={{ "flex-grow": 1, "margin-left": '1vw', display: 'flex', "flex-direction": 'column' }}>
-          <div class="bold h3 tt-c1">
+        <div class={`flex ${style.experiencia_container}`}>
+          <div class="bold h3 tt-c1 mb-06">
             Experiencia adicional en:
           </div>
           { experienciaAdicional.map(e => {
-              return <div class="flex ai-start">
+              return <div class="flex ai-start mb-06">
                 <div class={`${style.dot}`} />
                 <div>{getContent(e)}</div>
               </div>
@@ -93,7 +93,7 @@ export default function Home() {
           }
           <div style={{ width: "100%", "border-bottom": '1px solid black', margin: '12px 0' }}>
           </div>
-          <div class="bold h3 tt-c1">Día de trabajo habitual:</div>
+          <div class="bold h3 tt-c1 mb-06">Día de trabajo habitual:</div>
           <table>
             <tbody>
             { diaHabitual.map(e => {
@@ -210,8 +210,30 @@ interface IWordExperienceCard {
   args: IWordExperience
 }
 
+const months = {
+  '1': { es: 'Ene', en: "Jan" }, 
+  '2' : { es: 'Feb', en: "Feb"  },
+  '3': { es: 'Mar', en: "Mar" }, 
+  '4' : { es: 'Abr', en: "Apr"  },
+  '5': { es: 'May', en: "May" }, 
+  '6' : { es: 'Jun', en: "Jun"  },
+  '7': { es: 'Jul', en: "Jul" }, 
+  '8' : { es: 'Ago', en: "Ago"  },
+  '9': { es: 'Sep', en: "Sep" }, 
+  '10': { es: 'Oct', en: "Oct"  },
+  '11':{ es: 'Nov', en: "Nov" }, 
+  '12': { es: 'Dic', en: "Dec"  },
+} as { [e: string]: { en: string, es: string } }
+
+const parseYear = (yearMon: number) =>{
+  if(yearMon === -1){ return "Present" }
+  const year = String(yearMon).substring(0,4)
+  const month = months[String(parseInt(String(yearMon).substring(4,6)))]
+
+  return `${getContent(month||"")} ${year}`
+}
+
 const WordExperienceCard = (props: IWordExperienceCard) => {
-  console.log("logo:: ", props.args.logo)
 
   return <div class={style.table_card}>
     <div style={{ display: 'flex' }}>
@@ -222,6 +244,9 @@ const WordExperienceCard = (props: IWordExperienceCard) => {
       <div>
         <div class="h2 bold tt-c1">{props.args.company}</div>
         <div>{props.args.role}</div>
+        <div class={`bold h5 ${style.work_year}`}>
+          {`${parseYear(props.args.years[0])} - ${parseYear(props.args.years[1])}`}
+        </div>
       </div>
     </div>
     <div>
@@ -238,8 +263,7 @@ interface IStudyCard {
 }
 
 const StudyCard = (props: IStudyCard) => {
-  console.log("logo:: ", props.args.logo)
-
+  
   return <div class={style.table_card}>
     <div style={{ display: 'flex' }}>
       <div class={style.table_card_image_ctn}>

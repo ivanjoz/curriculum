@@ -82,7 +82,7 @@ export const experienciaAdicional = [
   { es: "AWS: Cloudformation, IAM, API-Gateway, CloudFront",
     en: ""
   },
-  { es: "Vite.js, Next.js, Service Workers, PWA, WebSockets",
+  { es: "Web APIs, Service Workers, PWA, WebSockets, Vite.js, Next.js",
     en: ""
   },
   { es: "Cálculos geo-espaciales y renderización de mapas",
@@ -127,7 +127,7 @@ export const technologies: ITechnologies[] = [
   { name: "Mongo DB, ArangoDB",
     years: [[18,7],[19,7]],
   },
-  { name: "JavaScript & WebAPIs",
+  { name: "JavaScript / TypeScript",
     years:    [[17,8],[18,7],[19,7],[20,7],[21,6],[22,6],[23,6],[24,6]], 
   },
   { name: "Linux, Bash, Nginx, VPS",
@@ -161,7 +161,7 @@ export const technologies: ITechnologies[] = [
 
 export interface IWordExperience {
   company: string
-  years?: number[]
+  years: number[]
   role?: string
   description: string[]
   logo?: string
@@ -170,6 +170,7 @@ export interface IWordExperience {
 
 export const workExperience: IWordExperience[] = [
   { company: "Hortifrut SA",
+    years: [202211, -1],
   description: [
     "Desarrollo de software empresarial para áreas de producción, sanidad y mejora contínua con React.js, Go, Node.js, PostgreSQL y DynamoDB",
     "Desarrollo sobre servicios AWS como Lambda, S3, ECS, CloudFront, Athena, API-Gateway mediante SDK y CLI",
@@ -180,6 +181,7 @@ export const workExperience: IWordExperience[] = [
   },
   { company: "Yawi Solutions",
     role: "Senior Software Developer",
+    years: [202003, 202211],
     logo: logoYawiSVG,
   description: [
     "Desarrollo de software empresarial con Angular, React.js + Vite.js, C# / .NET Core, Node.js y Go.",
@@ -190,6 +192,7 @@ export const workExperience: IWordExperience[] = [
   ]
   },
   { company: "Upwork",
+    years: [201906, 202203],
     logo: upworkLogoSVG,
     description: [
       "Desarrollo de sistemas web con React, Node y MongoDB: Catálogo de cursos para institución educativa",
@@ -200,6 +203,7 @@ export const workExperience: IWordExperience[] = [
   },
   { company: "Unicore",
     logo: logoUnicoreSVG,
+    years: [201804, 201906],
     role: "Software Developer & Founder",
     description: [
       "Desarrollo de sistema empresarial con módulos de ventas, finanzas, logística, productos y facturación electrónica usando PostgreSQL, DynamoDB, Node.js, React.js y WebSockets",
@@ -209,6 +213,7 @@ export const workExperience: IWordExperience[] = [
   },
   { company: "Permex International",
     logoImg: "images/permex4.webp",
+    years: [201604, 201802],
     role: "Jefe de Operaciones",
     description: [
       "Planificación y control de la producción y el abastecimiento para la producción de chips de carnaza",
@@ -217,6 +222,7 @@ export const workExperience: IWordExperience[] = [
     ]
   },
   { company: "EQUOM SAC",
+    years: [201501, 201603],
     logo: equomLogoSVG,
   description: [
     "Participación en desarrollo de CompuBox: Mini-PC Linux con procesador ARM",

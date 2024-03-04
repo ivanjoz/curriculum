@@ -3,8 +3,7 @@ export const parseSVG = (svgContent: string)=> {
   if(typeof process !== 'undefined' && process.env.NEXT_RUNTIME === 'nodejs'){
     return ""
   }
-
-
+  
   console.log(svgContent)
 
   const decoded = unescape(encodeURIComponent(svgContent))
