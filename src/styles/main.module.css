@@ -16,6 +16,24 @@
   overflow: auto;
 }
 
+.dot {
+  width: 8px;
+  height: 8px;
+  background-color: rgb(101, 76, 160);
+  border-radius: 50%;
+  margin-right: 4px;
+  flex-shrink: 0;
+  margin-top: 8px;
+}
+.ivan_nombre {
+  text-shadow: 0px 1px 7px #0000008c;
+}
+
+.experiencia1 {
+  color: #e2ceff;
+  text-shadow: 0px 1px 7px #000000a1;
+}
+
 .about_me_layer {
   padding: 1rem 0.6vw 0 0.6vw;
   top: 0;
@@ -40,7 +58,7 @@
 }
 
 .about_me_layer_inline {
-  padding: 1rem 0.6vw 0 0.6vw;
+  padding: 1rem 0.6vw 1rem 0.6vw;
   background-color: rgb(72 73 97);
   width: 100%;
   display: none;
@@ -67,9 +85,12 @@
  }
 
 .letter {
-  margin-top: 1rem;
+  margin-top: calc(0.3rem + 0.5vw);
   color: white;
   text-align: center;
+}
+.developer {
+  max-width: 16rem;
 }
 .location {
   color: white;
@@ -122,6 +143,14 @@
   position: relative;
   height: 21px;
   border-bottom: 1px solid #eeecf7;
+  white-space: nowrap;
+}
+.email {
+  color: white;
+  text-decoration: none;
+}
+.email:hover {
+  text-decoration: underline;
 }
 
 .table_main > tbody > tr:nth-child(2n) {
@@ -131,17 +160,9 @@
 
 .table_card {
   background-color: white;
-  margin: 6px;
+  margin: 8px 8px;
   box-shadow: rgb(0 0 0 / 11%) 0px 2px 12px -2px;
-  padding: 6px;
-  border-radius: 6px;
-}
-
-.table_card {
-  background-color: white;
-  margin: 6px;
-  box-shadow: rgb(0 0 0 / 11%) 0px 2px 12px -2px;
-  padding: 8px;
+  padding: 6px 6px 6px 8px;
   border-radius: 6px;
 }
 
@@ -221,17 +242,20 @@
   opacity: 0.8;
 }
 .email_icon {
-  background-color: rgba(0, 0, 0, 0.171);
+  background-color: rgba(0, 0, 0, 0.14);
   align-items: center;
   padding: 3px 8px 4px;
   border-radius: 7px;
   margin-bottom: 1rem;
+  margin-top: calc(6px + 0.5vw);
 }
 
 @media (max-width: 970px) {
   .photo_circle { 
     width: calc(8vw + 8rem);
     height: calc(8vw + 8rem);
+    max-width: 70vw;
+    max-height: 70vw;
     flex-shrink: 0;
   }
   .about_me_layer {
@@ -246,21 +270,39 @@
   .content {
     height: auto;
   }
+  .table_card {
+    padding-left: 6px;
+  }
+  .tecnologias_container {
+    flex-direction: column;
+  }
+  .table_main_container {
+    max-width: 34rem;
+  }
+  .table_main_container {
+    margin-bottom: 1rem;
+    width: inherit;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 4px;
+  }
+  .title {
+    width: 100%;
+    text-align: center;
+    padding: 0.7rem 1rem;
+  }
+  .photo_circle {
+    width: 14rem;
+    height: 14rem;
+  }
   body { 
     --side-layer-width: 0px; 
   }
 }
 
 @media (max-width: 750px) {
-  .tecnologias_container {
-    flex-direction: column;
-  }
   .about_me_layer_inline {
     grid-template-columns: 1fr;
-  }
-  .table_main_container {
-    margin-bottom: 1rem;
-    padding: 4px;
   }
   .main {
     display: block;
@@ -274,6 +316,13 @@
   }
   .content {
     height: auto;
+  }
+  .photo_circle {
+    width: 18rem;
+    height: 18rem;
+  }
+  .photo_circle {
+    padding: 0.7rem;
   }
   body { 
     --side-layer-width: 0px; 
@@ -310,6 +359,15 @@
   .skill_card {
     padding: 6px;
     max-width: 46vw;
+  }
+  .table_card {
+    margin-bottom: 14px;
+  }
+  .foda_card {
+    margin-bottom: 10px;
+  }
+  table tr > th:nth-of-type(odd) > .table_header {
+    margin-bottom: 1.2rem;
   }
   body { 
     --side-layer-width: 0px; 

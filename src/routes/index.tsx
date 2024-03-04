@@ -1,5 +1,5 @@
 import { JSX } from "solid-js"
-import { ITechnologies, IWordExperience, foda, technologies, studies, workExperience, skills, diaHabitual, IStudy, experienciaAdicional, socialNetworks } from "~/content"
+import { ITechnologies, IWordExperience, foda, technologies, studies, workExperience, skills, diaHabitual, IStudy, experienciaAdicional, socialNetworks, ultimosProyectos } from "~/content"
 import style from "../styles/main.module.css"
 import icon_location from '../../public/images/icon-location.svg?raw'
 import icon_email from '../../public/images/email-icon.svg?raw'
@@ -55,7 +55,7 @@ export default function Home() {
     <AboutMeLayer css={style.about_me_layer}/>
     <AboutMeLayer css={style.about_me_layer_inline}/>
     <div class={style.content}>
-      <h2 class="bold">Tecnologías / Años de Experiencia</h2>
+      <h2 class={`bold ${style.title}`}>Tecnologías / Años de Experiencia</h2>
       <div class={`flex w100 ${style.tecnologias_container}`}>
         <div class={style.table_main_container}>
           <table class={`w100 ${style.table_main}`}>
@@ -85,8 +85,8 @@ export default function Home() {
             Experiencia adicional en:
           </div>
           { experienciaAdicional.map(e => {
-              return <div class="flex">
-                <div style={{ width: '0.8rem' }}>●</div>
+              return <div class="flex ai-start">
+                <div class={`${style.dot}`} />
                 <div>{getContent(e)}</div>
               </div>
             })
@@ -107,7 +107,7 @@ export default function Home() {
           </table>
         </div>
       </div>
-      <h2>Skills</h2>
+      <h2 class={`bold ${style.title}`}>Skills</h2>
       <div class={`flex ${style.skill_card_container}`}>
         { skills.map(e => {
             return <div class={`${style.skill_card}`}>
@@ -117,7 +117,7 @@ export default function Home() {
           })
         }
       </div>
-      <h2 class="bold">Experiencia Laboral</h2>
+      <h2 class={`bold ${style.title}`}>Experiencia Laboral</h2>
       {/* EXPERIENCIA LABORAL */}
       <div class={style.table_card_container}>
         { workExperience.map(e => {
@@ -125,30 +125,29 @@ export default function Home() {
           })
         }
       </div>
-      <h2 class="bold">Últimos Proyectos</h2>
+      <h2 class={`bold ${style.title}`}>Últimos Proyectos</h2>
       <div style={{ "padding-left": '0.8rem' }}>
-        <div>● Genix: Sistema de gestión para Mypes (Logística, Comercial, Finanzas)</div>
-        <div>● Librería de conversación de imagen .webp y .avif en Go con binarios precompilados hechos en Rust.</div>
-        <div>● ORM para ScyllaDB / Cassandra hecho en Go.</div>
-        <div>● SmartBerry. Sistema de gestión de producción agrícola de Hortifrut.</div>
-        <div>● Sistema de componentes frontend en Solid.Js</div>
-        <div>● Jobfinder. Sistema de búsqueda de empleos y scraping.</div>
-        <div>● Páginas web y CSM con React + Next.js</div>
+        { ultimosProyectos.map(e => {
+            return <div class="flex ai-start">
+              <div class={`${style.dot}`} />{getContent(e)}
+            </div>
+          })
+        }
       </div>
-      <h2 class="bold">F.O.D.A</h2>
+      <h2 class={`bold ${style.title}`}>F.O.D.A</h2>
       <div class={style.table_card_container}>
         { foda.map(item => {
             return <div class={style.foda_card}>
               <div class="bold h5 tt-c1 w100 ta-c">{item.name}</div>
               { item.list.map(text => {
-                  return <div>● {text}</div>
+                  return <div class="flex ai-start"><div class={`${style.dot}`} /> {text}</div>
               })
               }
             </div>
           })
         }
       </div>
-      <h2 class="bold">Estudios</h2>
+      <h2 class={`bold ${style.title}`}>Estudios</h2>
       <div class={style.table_card_container}>
         { studies.map(e => {
             return <StudyCard args={e} />
@@ -170,17 +169,17 @@ const AboutMeLayer = (props: IAboutMeLayer) => {
         <img src="images/ivan-angulo-profile.webp" alt="ivan angulo reyna profile" />
       </div>
       <div class={`${style.letter}`}>
-        <h1 class="h1 bold">Iván J. Angulo Reyna</h1>
+        <h1 class={`h1 bold ${style.ivan_nombre}`}>Iván J. Angulo</h1>
       </div>
       <div class={`flex ${style.location_container}`}>
         <img src={parseSVG(icon_location)} alt="" 
           style={{ "margin-right": '3px', width: '1rem', height: '1rem' }} />
-        <div class={`h3 ${style.location}`}>Trujillo - Perú</div>
+        <div class={`${style.location}`}>Trujillo - Perú</div>
       </div>
     </div>
     <div>
-      <div class={style.letter}>
-        <h2 style={{ "margin-bottom": '0' }} class="h2 bold">Software Developer FullStack</h2>
+      <div class={`${style.letter} ${style.developer}`}>
+        <h2 class={`h22 bold ${style.experiencia1}`}>Software Developer FullStack</h2>
       </div >
       <div class={`${style.letter} ${style.about_me}`} style={{ padding: '8px', "text-align": 'center' }}>
         5+ años de experiencia desarrollando sistemas cloud con Node.Js, Go y C# y AWS, Linux, frontend con React y bases de datos SQL.
@@ -199,7 +198,9 @@ const AboutMeLayer = (props: IAboutMeLayer) => {
       <div class={`flex ${style.email_icon}`}>
         <img src={parseSVG(icon_email)} alt="" 
             style={{ "margin-right": '6px', width: '1rem', height: '1rem' }} />
-        <div class={`h3 ${style.location}`}>ivan@un.pe</div>
+        <div class={`h3 ${style.location}`}>
+          <a href="mailto:ivan@un.pe" class={`${style.email}`}>ivan@un.pe</a>
+        </div>
       </div>
     </div>
   </div>
@@ -225,7 +226,7 @@ const WordExperienceCard = (props: IWordExperienceCard) => {
     </div>
     <div>
     { props.args.description.map(e => {
-        return <div>● {e}</div>
+        return <div class="flex ai-start"><div class={`${style.dot}`} /> {e}</div>
       })
     }
     </div>
