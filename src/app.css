@@ -6,7 +6,7 @@ body {
   --padding-sides: 0px;
   --side-layer-width: 25vw;
   --content-padding: 1rem;
-  font-size: 18px;
+  font-size: 16px;
   color: rgb(39, 38, 41);
 }
 
@@ -15,11 +15,12 @@ body {
 }
 
 @font-face { 
-  font-family: 'main'; src: url("/libs/cofo_sans.woff2"); 
+  font-family: 'main'; src: url("/libs/open-sans-regular.woff2");
+ /* font-family: 'main'; src: url("/libs/cofo_sans.woff2"); */
  /* font-family: 'main'; src: url("/libs/nunito-v12-latin-regular.woff"); */
 }
 @font-face { 
-  font-family: 'bold'; src: url("/libs/cofo_sans_600.woff2") 
+  font-family: 'bold'; src: url("/libs/open-sans-latin-700.woff2") 
 }
 
 .h5 {
