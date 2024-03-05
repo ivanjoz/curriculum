@@ -126,7 +126,7 @@ export default function Home() {
         }
       </div>
       <h2 class={`bold ${style.title}`}>Últimos Proyectos</h2>
-      <div style={{ "padding-left": '0.8rem' }}>
+      <div class="block-margin" style={{ "padding-left": '0.8rem' }}>
         { ultimosProyectos.map(e => {
             return <div class="flex ai-start">
               <div class={`${style.dot}`} />{getContent(e)}
@@ -135,9 +135,9 @@ export default function Home() {
         }
       </div>
       <h2 class={`bold ${style.title}`}>F.O.D.A</h2>
-      <div class={style.table_card_container}>
+      <div class={`${style.table_card_container}`}>
         { foda.map(item => {
-            return <div class={style.foda_card}>
+            return <div class={`block-margin4 ${style.foda_card}`}>
               <div class="bold h5 tt-c1 w100 ta-c">{item.name}</div>
               { item.list.map(text => {
                   return <div class="flex ai-start"><div class={`${style.dot}`} /> {text}</div>
@@ -244,12 +244,12 @@ const WordExperienceCard = (props: IWordExperienceCard) => {
       <div>
         <div class="h2 bold tt-c1">{props.args.company}</div>
         <div>{props.args.role}</div>
-        <div class={`bold h5 ${style.work_year}`}>
+        <div class={`bold ${style.work_year}`}>
           {`${parseYear(props.args.years[0])} - ${parseYear(props.args.years[1])}`}
         </div>
       </div>
     </div>
-    <div>
+    <div class="block-margin">
     { props.args.description.map(e => {
         return <div class="flex ai-start"><div class={`${style.dot}`} /> {e}</div>
       })
