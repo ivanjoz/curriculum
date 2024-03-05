@@ -32,6 +32,10 @@
   flex-shrink: 0;
   margin-top: 8px;
 }
+
+.dot_line {
+  display: none;
+}
 .ivan_nombre {
   text-shadow: 0px 1px 7px #0000008c;
 }
@@ -165,8 +169,11 @@
 .table_main > tbody > tr:nth-child(2n) {
   background-color: #f4f1ff;
 }
-
-
+.line_border {
+  width: 100%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  margin: 12px 0;
+}
 .table_card {
   background-color: white;
   margin: 8px 8px;
@@ -191,6 +198,7 @@
   height: 4.5rem;
   position: relative;
   margin-bottom: 4px;
+  flex-shrink: 0;
 }
 
 .table_card_image {
@@ -338,6 +346,10 @@
   .photo_circle {
     padding: 0.7rem;
   }
+  .line_border {
+    width: calc(100% - 1.2rem);
+    margin-left: 0.4rem;
+  }
   body { 
     --side-layer-width: 0px; 
   }
@@ -383,6 +395,27 @@
   .experiencia_container {
     margin-left: 1.4vw;
   }
+  .dot {
+    display: none;
+  }
+  .dot_line {
+    height: 4px;
+    width: 3rem;
+    background-color: #f7c392;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .dot_container {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    padding-right: 0.8rem;
+    justify-content: center;
+    text-align: center;
+  }
+  .subtitle {
+    text-align: center;
+  }  
   table tr > th:nth-of-type(odd) > .table_header {
     margin-bottom: 1.2rem;
   }

@@ -283,22 +283,31 @@ export const foda: IFoda[] = [
 
 export interface IStudy {
   name: string
+  carrer: string
   description?: string
   content: string[]
   logo: string
+  years: string
 }
 
 export const studies: IStudy[] = [
   { name: 'Platzi',
+    carrer: 'Desarrollo de Software',
     logo: platzi_logo_svg,
-    content: []
+    years: '2019-2022',
+    content: [`Cursos: JavaScript, TypeScript, ReactJS, Golang, Frontend Development,
+    Back-end con NodeJs y ExpressJs. SCRUM. Arquitectura cloud con AWS.`]
   },
   { name: 'Uni. Privada Antenor Orrego',
+    carrer: 'Maestría en Administración con Mención en Finanzas',
     logo: universidad_upao_svg,
+    years: '2018-2019',
     content: []
   },
   { name: 'Uni. Privada del Norte',
+    carrer: 'Carrera de Administración y negocios internacionales',
     logo: universidad_upn_svg,
-    content: []
+    years: '2009-2014',
+    content: ["Licenciado","Rendimiento: 5to Superior","Tesis: Reducción del precio CIF mediante el apalancamiento operativo-financiero."]
   },
 ]

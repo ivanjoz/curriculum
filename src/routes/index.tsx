@@ -15,7 +15,9 @@ interface ISkillsColumns {
 const yearInicio = 17
 const yearFin = 24
 
-const getContent = (content: string | { en?: string, es?: string }): string => {
+type IContent = string | { en?: string, es?: string }
+
+const getContent = (content: IContent): string => {
   if(typeof content === 'string'){
     return content
   } else {
@@ -81,19 +83,20 @@ export default function Home() {
           </table>
         </div>
         <div class={`flex ${style.experiencia_container}`}>
-          <div class="bold h3 tt-c1 mb-06">
+          <div class={`bold h3 tt-c1 mb-06 ${style.subtitle}`}>
             Experiencia adicional en:
           </div>
-          { experienciaAdicional.map(e => {
-              return <div class="flex ai-start mb-06">
-                <div class={`${style.dot}`} />
-                <div>{getContent(e)}</div>
-              </div>
+          <div class="w100 block-margin">
+          { experienciaAdicional.map((e,i) => {
+              return LineCard(e,i)
             })
           }
-          <div style={{ width: "100%", "border-bottom": '1px solid black', margin: '12px 0' }}>
           </div>
-          <div class="bold h3 tt-c1 mb-06">Día de trabajo habitual:</div>
+          <div class={`${style.line_border}`}>
+          </div>
+          <div class={`bold h3 tt-c1 mb-06 ${style.subtitle}`}>
+            Día de trabajo habitual:
+          </div>
           <table>
             <tbody>
             { diaHabitual.map(e => {
@@ -127,10 +130,8 @@ export default function Home() {
       </div>
       <h2 class={`bold ${style.title}`}>Últimos Proyectos</h2>
       <div class="block-margin" style={{ "padding-left": '0.8rem' }}>
-        { ultimosProyectos.map(e => {
-            return <div class="flex ai-start">
-              <div class={`${style.dot}`} />{getContent(e)}
-            </div>
+        { ultimosProyectos.map((e,i) => {
+            return LineCard(e,i)
           })
         }
       </div>
@@ -271,14 +272,24 @@ const StudyCard = (props: IStudyCard) => {
       </div>
       <div>
         <div class="h2 bold tt-c1">{props.args.name}</div>
-        <div>{props.args.content}</div>
+        <div>{props.args.carrer}</div>
+        <div class={`bold ${style.work_year}`}>
+          {props.args.years}
+        </div>
       </div>
     </div>
-    <div>
-    { props.args.content.map(e => {
-        return <div>{e}</div>
-      })
-    }
+    <div class="block-margin4">
+      { props.args.content.map(e => {
+          return <div class="flex ai-start"><div class={`${style.dot}`} /> {e}</div>
+        })
+      }
     </div>
+  </div>
+}
+
+const LineCard = (text: IContent, i?: number) => {
+  return <div class={`flex ai-start ${style.dot_container}`}>
+    { i !== 0 && <div class={`${style.dot_line}`}/>  }
+    <div class={`${style.dot}`} />{getContent(text)}
   </div>
 }
