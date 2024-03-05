@@ -141,7 +141,7 @@ export default function Home() {
             return <div class={`block-margin4 ${style.foda_card}`}>
               <div class="bold h5 tt-c1 w100 ta-c">{item.name}</div>
               { item.list.map(text => {
-                  return <div class="flex ai-start"><div class={`${style.dot}`} /> {text}</div>
+                  return <div class="flex ai-start"><div class={`${style.dot_static}`} /> {text}</div>
               })
               }
             </div>
@@ -252,7 +252,7 @@ const WordExperienceCard = (props: IWordExperienceCard) => {
     </div>
     <div class="block-margin">
     { props.args.description.map(e => {
-        return <div class="flex ai-start"><div class={`${style.dot}`} /> {e}</div>
+        return <div class="flex ai-start"><div class={`${style.dot_static}`} /> {e}</div>
       })
     }
     </div>
@@ -280,7 +280,7 @@ const StudyCard = (props: IStudyCard) => {
     </div>
     <div class="block-margin4">
       { props.args.content.map(e => {
-          return <div class="flex ai-start"><div class={`${style.dot}`} /> {e}</div>
+          return <div class="flex ai-start"><div class={`${style.dot_static}`} /> {e}</div>
         })
       }
     </div>

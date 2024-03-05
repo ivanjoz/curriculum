@@ -23,14 +23,14 @@
 .title {
   color: #403a56
 }
-.dot {
+.dot, .dot_static {
   width: 8px;
   height: 8px;
   background-color: rgb(101, 76, 160);
   border-radius: 50%;
   margin-right: 4px;
   flex-shrink: 0;
-  margin-top: 8px;
+  margin-top: 7px;
 }
 
 .dot_line {
