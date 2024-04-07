@@ -41,13 +41,19 @@ export const diaHabitual = [
 
 export const socialNetworks = [
   { icon: github_icon_svg,
-    url: "https://github.com/ivanjoz/"
+    url: "https://github.com/ivanjoz/",
+    name: "Github",
+    user: "/ivanjoz"
   },
   { icon: linkedin_icon_svg,
-    url: "https://www.linkedin.com/in/anguloivan/"
+    url: "https://www.linkedin.com/in/anguloivan/",
+    name: "LinkedIn",
+    user: "/anguloivan"
   },
   { icon: medium_icon_svg,
-    url: "https://medium.com/@angivan"
+    url: "https://medium.com/@angivan",
+    name: "Medium",
+    user: "@angivan"
   }
 ]
 
@@ -94,6 +100,7 @@ export interface ITechnologies {
   name: string
   years: number[][]
   priority?: number[]
+  isYear?: boolean
 }
 
 export const technologies: ITechnologies[] = [
@@ -192,7 +199,7 @@ export const workExperience: IWordExperience[] = [
   ]
   },
   { company: "Upwork",
-    years: [201906, 202203],
+    years: [201906, 202003],
     logo: upworkLogoSVG,
     description: [
       "Desarrollo de sistemas web con React, Node y MongoDB: Catálogo de cursos para institución educativa",

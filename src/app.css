@@ -69,6 +69,7 @@ h1, h2, h3, h4, h5, h6 {
 .ai-baseline { align-items: baseline; }
 .ai-start { align-items: flex-start; }
 .ac-start { align-content: flex-start; }
+.jc-between { justify-content: space-between; }
 
 .block-margin > div {
   margin-bottom: 6px;

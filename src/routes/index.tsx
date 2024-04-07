@@ -4,6 +4,7 @@ import style from "../styles/main.module.css"
 import icon_location from '../../public/images/icon-location.svg?raw'
 import icon_email from '../../public/images/email-icon.svg?raw'
 import { parseSVG } from "~/helpers"
+import { downloadPdf } from "~/handlers/pdf-export"
 
 interface ISkillsColumns {
   name: string
@@ -57,6 +58,15 @@ export default function Home() {
     <AboutMeLayer css={style.about_me_layer}/>
     <AboutMeLayer css={style.about_me_layer_inline}/>
     <div class={style.content}>
+      <div class="flex jc-between">
+        <div></div>
+        <div>
+          <button onClick={ev => {
+            ev.stopPropagation()
+            downloadPdf()
+          }}>Download</button>
+        </div>
+      </div>
       <h2 class={`bold ${style.title}`}>Tecnologías / Años de Experiencia</h2>
       <div class={`flex w100 ${style.tecnologias_container}`}>
         <div class={style.table_main_container}>

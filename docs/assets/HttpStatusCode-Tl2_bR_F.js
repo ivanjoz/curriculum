@@ -1,0 +1,1 @@
+import{onCleanup as s}from"solid-js";import{isServer as n,getRequestEvent as o}from"solid-js/web";const a=n?e=>{const t=o();return t.response.status=e.code,t.response.statusText=e.text,s(()=>!t.nativeEvent.handled&&(t.response.status=200)),null}:e=>null;export{a as H};

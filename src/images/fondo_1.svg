@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="164.00999mm"
+   height="103.9008mm"
+   version="1.1"
+   viewBox="0 0 164.01 103.90081"
+   id="svg1"
+   sodipodi:docname="fondo_1.svg"
+   inkscape:version="1.3.1 (91b66b0783, 2023-11-16)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1">
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect58"
+       is_visible="true"
+       lpeversion="1"
+       nodesatellites_param="F,0,0,1,0,4.4979167,0,1 @ F,0,0,1,0,4.4979167,0,1 @ F,0,0,1,0,4.4979167,0,1 @ F,0,0,1,0,4.4979167,0,1"
+       radius="17"
+       unit="px"
+       method="auto"
+       mode="F"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
+    <inkscape:path-effect
+       effect="fill_between_many"
+       id="path-effect57"
+       is_visible="true"
+       lpeversion="1.2"
+       linkedpaths=""
+       method="bsplinespiro"
+       join="true"
+       close="true"
+       autoreverse="true" />
+    <radialGradient
+       id="radialGradient3"
+       cx="49.568001"
+       cy="34.235001"
+       r="31.622"
+       gradientTransform="matrix(2.2496904,0,0,2.2647332,-51.488811,-36.189273)"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         stop-color="#11141d"
+         stop-opacity="0"
+         offset="0"
+         id="stop1" />
+      <stop
+         stop-color="#11141d"
+         stop-opacity=".25586"
+         offset=".76531"
+         id="stop2" />
+      <stop
+         stop-color="#11141d"
+         stop-opacity="0"
+         offset=".93163"
+         id="stop3" />
+    </radialGradient>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter55"
+       x="-0.049753067"
+       y="-0.082373492"
+       width="1.0995061"
+       height="1.164747">
+      <feFlood
+         result="flood"
+         in="SourceGraphic"
+         flood-opacity="0.349020"
+         flood-color="rgb(21,30,36)"
+         id="feFlood54" />
+      <feGaussianBlur
+         result="blur"
+         in="SourceGraphic"
+         stdDeviation="3.400000"
+         id="feGaussianBlur54" />
+      <feOffset
+         result="offset"
+         in="blur"
+         dx="0.000000"
+         dy="0.000000"
+         id="feOffset54" />
+      <feComposite
+         result="comp1"
+         operator="in"
+         in="flood"
+         in2="offset"
+         id="feComposite54" />
+      <feComposite
+         result="comp2"
+         operator="over"
+         in="SourceGraphic"
+         in2="comp1"
+         id="feComposite55" />
+    </filter>
+  </defs>
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="1.0494578"
+     inkscape:cx="177.23437"
+     inkscape:cy="269.66305"
+     inkscape:window-width="1920"
+     inkscape:window-height="1006"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g1" />
+  <g
+     transform="matrix(0.8716614,0,0,0.91424799,9.0724957,5.8385875)"
+     id="g1"
+     style="filter:url(#filter55);fill:#e9eef1;fill-opacity:1">
+    <path
+       x="0.66692001"
+       y="0.92469001"
+       width="164.00999"
+       height="99.060997"
+       rx="0.064712003"
+       fill="#d6e6dd"
+       stroke-width="0.27182"
+       id="rect1"
+       style="fill:#e9eef1;fill-opacity:1"
+       sodipodi:type="rect"
+       inkscape:path-effect="#path-effect58"
+       d="m 5.1648367,0.92469001 155.0141633,0 a 4.4979167,4.4979167 45 0 1 4.49791,4.49791669 V 95.48777 A 4.4979167,4.4979167 135 0 1 160.179,99.985687 H 5.1648367 A 4.4979167,4.4979167 45 0 1 0.66692001,95.48777 V 5.4226067 A 4.4979167,4.4979167 135 0 1 5.1648367,0.92469001 Z"
+       transform="matrix(1.0492465,0,0,1,-3.4074148,0)" />
+  </g>
+</svg>

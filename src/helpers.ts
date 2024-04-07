@@ -13,3 +13,9 @@ export const parseSVG = (svgContent: string)=> {
   // return `data:image/svg+xml;base64,${base64String}`
   return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svgContent)}`
 }
+
+export const changeSVGColor = (svgContent: string, colors: string[]) => {
+
+    
+
+}

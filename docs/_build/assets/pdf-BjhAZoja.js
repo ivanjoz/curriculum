@@ -1,0 +1,1 @@
+import{n,w as l,m as r,x as i}from"./web-CsdZQrJ0.js";import{d}from"./pdf-export-CBsJwQLr.js";var s=i("<div><h1>hola</h1><button>Download");function f(){return(()=>{var t=n(s),e=t.firstChild,a=e.nextSibling;return a.$$click=o=>{o.stopPropagation(),d()},l(),t})()}r(["click"]);export{f as default};
