@@ -6,7 +6,7 @@ const buildFolder = path.join(__dirname,'.output','public')
 const staticFolder = path.join(__dirname,'docs')
 
 const buildSubFolder = [
-  "", "images", "assets", "libs", "_build", path.join("_build","assets")
+  "", "images","pdf", "assets", "libs", "_build", path.join("_build","assets")
 ]
 
 for(const folder of buildSubFolder){

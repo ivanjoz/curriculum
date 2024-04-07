@@ -16,13 +16,13 @@ export default defineConfig({
     preset: "githubPages",
     prerender: {
       // autoSubfolderIndex: true,
-      routes: ["/"],
+      routes: ["/","/pdf"],
       // crawlLinks: true,
     }
   },
   solid: {
     hot: false,
-    ssr: false,
+    ssr: IS_PRD,
   } as Options,
   vite() {
     return { 
