@@ -3,7 +3,7 @@ import { ITechnologies, IWordExperience, foda, technologies, studies, workExperi
 import style from "../styles/main.module.css"
 import icon_location from '../../public/images/icon-location.svg?raw'
 import icon_email from '../../public/images/email-icon.svg?raw'
-import { parseSVG } from "~/helpers"
+import { IContent, getContent, parseSVG, parseYear } from "~/helpers"
 import { downloadPdf } from "~/handlers/pdf-export"
 
 interface ISkillsColumns {
@@ -15,16 +15,6 @@ interface ISkillsColumns {
 
 const yearInicio = 17
 const yearFin = 24
-
-type IContent = string | { en?: string, es?: string }
-
-const getContent = (content: IContent): string => {
-  if(typeof content === 'string'){
-    return content
-  } else {
-    return (content.es||content.en) as string
-  }
-}
 
 export default function Home() {
 
@@ -219,29 +209,6 @@ const AboutMeLayer = (props: IAboutMeLayer) => {
 
 interface IWordExperienceCard {
   args: IWordExperience
-}
-
-const months = {
-  '1': { es: 'Ene', en: "Jan" }, 
-  '2' : { es: 'Feb', en: "Feb"  },
-  '3': { es: 'Mar', en: "Mar" }, 
-  '4' : { es: 'Abr', en: "Apr"  },
-  '5': { es: 'May', en: "May" }, 
-  '6' : { es: 'Jun', en: "Jun"  },
-  '7': { es: 'Jul', en: "Jul" }, 
-  '8' : { es: 'Ago', en: "Ago"  },
-  '9': { es: 'Sep', en: "Sep" }, 
-  '10': { es: 'Oct', en: "Oct"  },
-  '11':{ es: 'Nov', en: "Nov" }, 
-  '12': { es: 'Dic', en: "Dec"  },
-} as { [e: string]: { en: string, es: string } }
-
-const parseYear = (yearMon: number) =>{
-  if(yearMon === -1){ return "Present" }
-  const year = String(yearMon).substring(0,4)
-  const month = months[String(parseInt(String(yearMon).substring(4,6)))]
-
-  return `${getContent(month||"")} ${year}`
 }
 
 const WordExperienceCard = (props: IWordExperienceCard) => {

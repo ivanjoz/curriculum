@@ -60,24 +60,31 @@ export const socialNetworks = [
 export interface ISkills {
   desc: string
   icon: string
+  order1?: number
+  isBig?: boolean
 }
 
 export const skills: ISkills[] = [
   { desc: "Experiencia como Scrum Master en proyectos Agile",
     icon: skill_agile_svg,
+    order1: 1,
   },
   { desc: "Inglés avanzado y español nativo",
     icon: skill_languaje_svg,
+    order1: 2,
   },
   { desc: "Experiencia en arquitectura cloud, AWS y DevOps",
     icon: skill_cloud_svg,
-
+    order1: 3,
   },
   { desc: "Habilidades comunicativas y de coordinación",
     icon: skill_comunicacion_svg,
+    order1: 5,
   },
   { desc: "Desarrollo enfocado en escabilidad y mantenibilidad en sistemas complejos",
-    icon: skill_coding_svg
+    icon: skill_coding_svg,
+    order1: 4,
+    isBig: true
   },
 ]
 
@@ -173,6 +180,7 @@ export interface IWordExperience {
   description: string[]
   logo?: string
   logoImg?: string
+  pdfCardHeight?: number
 }
 
 export const workExperience: IWordExperience[] = [
@@ -184,12 +192,14 @@ export const workExperience: IWordExperience[] = [
     "Coordinación con múltiples áreas para el levantamiento técnico-funcional de los proyectos de software" 
   ],
     role: "Full Stack Developer",
-    logo: hortifrutLogoSVG
+    logo: hortifrutLogoSVG,
+    pdfCardHeight: 1
   },
   { company: "Yawi Solutions",
     role: "Senior Software Developer",
     years: [202003, 202211],
     logo: logoYawiSVG,
+    pdfCardHeight: 1,
   description: [
     "Desarrollo de software empresarial con Angular, React.js + Vite.js, C# / .NET Core, Node.js y Go.",
     "Modelado de base de datos Sql-Server y PostgreSQL",
@@ -201,6 +211,7 @@ export const workExperience: IWordExperience[] = [
   { company: "Upwork",
     years: [201906, 202003],
     logo: upworkLogoSVG,
+    pdfCardHeight: 0.7,
     description: [
       "Desarrollo de sistemas web con React, Node y MongoDB: Catálogo de cursos para institución educativa",
       "Desarrollo de gestor de contenidos para páginas web con JavaScript",
@@ -212,6 +223,7 @@ export const workExperience: IWordExperience[] = [
     logo: logoUnicoreSVG,
     years: [201804, 201906],
     role: "Software Developer & Founder",
+    pdfCardHeight: 0.7,
     description: [
       "Desarrollo de sistema empresarial con módulos de ventas, finanzas, logística, productos y facturación electrónica usando PostgreSQL, DynamoDB, Node.js, React.js y WebSockets",
       "Desarrollo de páginas webs con CMS e integración con plataformas de pago.",
@@ -222,6 +234,7 @@ export const workExperience: IWordExperience[] = [
     logoImg: "images/permex4.webp",
     years: [201604, 201802],
     role: "Jefe de Operaciones",
+    pdfCardHeight: 0.7,
     description: [
       "Planificación y control de la producción y el abastecimiento para la producción de chips de carnaza",
       "Gestión de la logística internacional y trámites para la exportación de contenedores a USA",
@@ -231,6 +244,7 @@ export const workExperience: IWordExperience[] = [
   { company: "EQUOM SAC",
     years: [201501, 201603],
     logo: equomLogoSVG,
+    pdfCardHeight: 0.5,
   description: [
     "Participación en desarrollo de CompuBox: Mini-PC Linux con procesador ARM",
     "Coordinación con proveedores internacionales, gestión del proceso de importación y manejo financiero",

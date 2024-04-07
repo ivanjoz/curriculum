@@ -1,11 +1,13 @@
 import pdf from 'pdfmake/build/pdfmake'
-import { Column, TDocumentDefinitions } from 'pdfmake/interfaces'
+import { Column, Content, TDocumentDefinitions } from 'pdfmake/interfaces'
 import * as d3 from "d3";
-import { ITechnologies, experienciaAdicional, socialNetworks, technologies, workExperience } from '~/content';
+import { ITechnologies, experienciaAdicional, skills, socialNetworks, technologies, workExperience } from '~/content';
 import cabecera_svg from '../images/cabecera_pdf_opt.svg?raw'
 import fondo1_svg from '../images/fondo_3.svg?raw'
 import icon_location from '../../public/images/icon-location.svg?raw'
 import icon_email from '../../public/images/email-icon.svg?raw'
+import circle_svg from '../images/circle.svg?raw'
+import { parseYear, replaceSVGColor, replaceSVGHeight } from '~/helpers';
 
 export const generateSVGChart = async (): Promise<string> => {
 
@@ -90,7 +92,6 @@ export const generateSVGChart = async (): Promise<string> => {
   }
   // get the svg code as string
   const svgCode = (container as HTMLDivElement).innerHTML
-  console.log(svgCode)
   return svgCode
 }
 
@@ -98,16 +99,48 @@ export const downloadPdf = async () => {
 
   pdf.fonts = {
     Roboto: {
-      normal: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.3.0-beta.1/fonts/Roboto/Roboto-Regular.ttf',
+      normal: window.origin + '/libs/open-sans-v40-latin-regular.ttf',
       bold: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.3.0-beta.1/fonts/Roboto/Roboto-Medium.ttf',
       italics: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.3.0-beta.1/fonts/Roboto/Roboto-Italic.ttf',
       bolditalics: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.3.0-beta.1/fonts/Roboto/Roboto-MediumItalic.ttf'
     },
   }
 
-  console.log("icon location::", icon_location)
-  console.log("icon email::", icon_email)
-  
+  const icon_location_1 = replaceSVGColor(icon_location, ["#435C81"])
+  const icon_email_1 = replaceSVGColor(icon_email, ["#435C81"])
+
+  const makeText = (text: string, fontSize: number, lineHeight: number, alignment: string): Content => {
+    return {
+      text,
+      fontSize: fontSize || 10,
+      lineHeight: lineHeight || 1,
+      alignment,
+    } as Content
+  }
+
+  const demo1 = replaceSVGHeight(fondo1_svg, [0.8,0.8,0.8,0.8,0.8,0.8])
+  console.log(demo1)
+
+  const makeBulletLine = (text: string, lineHeight?: number, marginBottom?: number) => {
+    return {
+      columns: [
+        {                      
+          width: 7,
+          svg: circle_svg,
+          height: 7,
+          marginTop: 3,
+        },                      
+        {    
+          ...makeText(text, 0, lineHeight || 1, ""),
+          width: "*",
+          marginLeft: 3,
+          marginBottom: marginBottom || 2,
+        },
+      ]
+    }
+  }
+
+
   const socialIcons: Column[] = [{ width: "*", text: "" }]
   for(let e of socialNetworks){
     socialIcons.push({
@@ -139,35 +172,43 @@ export const downloadPdf = async () => {
     if(!we.logo){ continue }
 
     workExperienceCards.push({
-      width: 266,
+      width: 264,
       unbreakable: true,
       fontSize: 10,
-      marginLeft: 8,
-      marginRight: 8,
+      marginLeft: 7,
+      marginRight: 7,
       marginBottom: 30,
+      marginTop: 8,
       stack: [
-        { svg: fondo1_svg, fit: [276,320],
-          marginBottom: -192,
-          marginLeft: -16,
+        { svg: replaceSVGHeight(fondo1_svg, 
+          [0,0,0,0,0,0].map(() => we.pdfCardHeight||1)), 
+          fit: [277,320],
+          relativePosition: { x: -14, y: -12 },
         },
         { 
-          marginLeft: 8,
-          marginRight: 8,
+          marginTop: 2,
+          marginLeft: 6,
+          marginRight: 6,
+          marginBottom: 2,
           columns: [
             { width: 90, fit: [80,50],  svg: we.logo },
             { width: "*", 
               stack: [
-                { text: we.company,
+                { text: we.company, fontSize: 12,
+                  bold: true,
                 },
-                { text: we.role as string }
+                { text: we.role as string },
+                {
+                  bold: true,
+                  text: `${parseYear(we.years[0])} - ${parseYear(we.years[1])}`,
+                  color: "#ca5151",
+                }
               ]
             },
           ]
         },
         ...(we.description.map(e => {
-          return {
-            text: "- " + e,
-          }
+          return makeBulletLine(e,0.9)
         }))
       ]
     })
@@ -190,6 +231,72 @@ export const downloadPdf = async () => {
     last.push(we)
   }
 
+  const skillsContent: Content[] = []
+
+  let skillsRemain = [...skills].sort((a,b) => a.order1 - b.order1)
+
+  let tryCount = 0
+  let beforeIsBig = false
+
+  while(skillsRemain.length > 0 && tryCount < 8){
+    tryCount++
+    const group = skillsRemain.slice(0, 2)
+    skillsRemain = skillsRemain.filter(e => !group.includes(e))
+
+    const columns: Column[] = []
+    for(let sk of group){
+      columns.push({
+        width: "*",
+        marginBottom: 2,
+        marginTop: beforeIsBig ? -12 : 0,
+        stack: [
+          {
+            alignment: 'center',
+            svg: sk.icon,
+            fit: [36,36],
+            marginBottom: 2,
+          },
+          makeText(sk.desc, 0, 0.9, 'center')
+        ]
+      })
+    }
+
+    if(columns.length === 1){
+      columns.push({ width: "*", text: "" })
+    }
+
+    skillsContent.push({
+      columns,
+      marginBottom: 4,
+    })
+
+    if(group.some(x => x.isBig)){
+      beforeIsBig = true
+    }
+  }
+  /*
+  for(let sk of skills){
+    const group = []
+    skillsContent.push({
+      columns: [
+        { width: 28,
+          svg: sk.icon,
+          height: 28,
+          marginTop: 2,
+        },
+        {    
+          width: "*",
+          lineHeight: 1,                  
+          text: sk.desc,
+          fontSize: 11,
+          marginLeft: 2,
+          marginBottom: 1,
+        },
+      ]
+    })
+  }
+  */
+
   const docDefinition: TDocumentDefinitions = {
     pageMargins: [ 25, 25, 25, 25 ],
     content: [
@@ -206,8 +313,9 @@ export const downloadPdf = async () => {
                 fontSize: 17,
                 text: "Iván J. Angulo",
                 alignment: 'center',
-                marginTop: 158,
+                marginTop: 155,
                 marginLeft: 36,
+                bold: true,
               },
             ]
           },
@@ -222,6 +330,7 @@ export const downloadPdf = async () => {
                 marginTop: 8,
                 alignment: 'center',
                 fontSize: 16,
+                bold: true,
                 text: "Software Developer",
               },
               { 
@@ -247,7 +356,7 @@ export const downloadPdf = async () => {
                       { 
                         marginTop: 1,
                         width: 12,
-                        svg: icon_email,
+                        svg: icon_email_1,
                         height: 12,
                       },                      
                       {    
@@ -269,13 +378,13 @@ export const downloadPdf = async () => {
                       { 
                         width: 12,
                         marginTop: 1,
-                        svg: icon_location,
-                        height: 12,
+                        svg: icon_location_1,
+                        height: 11,
                       },
                       { 
                         width: 70,
                         text: 'Trujillo, Perú.',
-                        fontSize: 12,
+                        fontSize: 11,
                         link: 'mailto:ivan@un.pe',
                       },
                       { width: '*', text: "" }, 
@@ -289,10 +398,11 @@ export const downloadPdf = async () => {
         ]
       },
       { 
-        marginTop: 22,
+        marginTop: 19,
         marginBottom: 4,
         text: "Tecnologías & Años de Experiencia",
-        fontSize: 13,
+        fontSize: 12,
+        bold: true,
       },
       {
         columns: [
@@ -302,27 +412,42 @@ export const downloadPdf = async () => {
             // absolutePosition: { x: 0, y: 0 }
           },
           { width: "*",
+            marginTop: -19,
             stack: [
               { text: "Conocimiento adicional en:", 
-                fontSize: 14,
+                fontSize: 12,
+                bold: true,
                 marginBottom: 4,
               },
               ...(experienciaAdicional.map(e => {
-                return {
-                  text: "● " + e.es,
-                  fontSize: 10,
-                  marginBottom: 4,
-                  marginLeft: 0,
+                return makeBulletLine(e.es,0.9)
+              })),
+              {
+                marginTop: 7,
+                marginBottom: 4,
+                alignment: 'center',
+                table: {
+                  widths: [ "*" ],
+                  body: [[ {
+                    fillColor: "#f4f1ff",
+                    text: "Skills",
+                    alignment: 'center',
+                    fontSize: 12,
+                    bold: true,
+                    border: [false, false, false, false],
+                  } ]]
                 }
-              }))
+              },
+              ...skillsContent
             ]
           }
         ]
       },
       { 
-        marginTop: 14,
+        marginTop: 6,
         marginBottom: 4,
         text: "Experiencia Laboral",
+        bold: true,
         fontSize: 14,
       },
       ...(workExperienceCardGroupd.map(columns => {
@@ -353,9 +478,9 @@ export const makeCabecera = async () => {
     }
   })
 
-  console.log(profilePhotoB64)
+  // console.log(profilePhotoB64)
 
-  console.log(cabecera_svg)
+  // console.log(cabecera_svg)
 
   // extrae la image
   const idx1 = cabecera_svg.indexOf('data:image/')
