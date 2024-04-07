@@ -1,13 +1,13 @@
 import pdf from 'pdfmake/build/pdfmake'
 import { Column, Content, TDocumentDefinitions } from 'pdfmake/interfaces'
 import * as d3 from "d3";
-import { ITechnologies, experienciaAdicional, skills, socialNetworks, technologies, workExperience } from '~/content';
+import { ITechnologies, experienciaAdicional, skills, socialNetworks, technologies, ultimosProyectos, workExperience } from '~/content';
 import cabecera_svg from '../images/cabecera_pdf_opt.svg?raw'
 import fondo1_svg from '../images/fondo_3.svg?raw'
 import icon_location from '../../public/images/icon-location.svg?raw'
 import icon_email from '../../public/images/email-icon.svg?raw'
 import circle_svg from '../images/circle.svg?raw'
-import { parseYear, replaceSVGColor, replaceSVGHeight } from '~/helpers';
+import { getContent, makeCardShadow, parseYear, replaceSVGColor, replaceSVGHeight } from '~/helpers';
 
 export const generateSVGChart = async (): Promise<string> => {
 
@@ -128,7 +128,7 @@ export const downloadPdf = async () => {
           width: 7,
           svg: circle_svg,
           height: 7,
-          marginTop: 3,
+          marginTop: 3.5,
         },                      
         {    
           ...makeText(text, 0, lineHeight || 1, ""),
@@ -177,12 +177,11 @@ export const downloadPdf = async () => {
       fontSize: 10,
       marginLeft: 7,
       marginRight: 7,
-      marginBottom: 30,
+      marginBottom: 14,
       marginTop: 8,
       stack: [
-        { svg: replaceSVGHeight(fondo1_svg, 
-          [0,0,0,0,0,0].map(() => we.pdfCardHeight||1)), 
-          fit: [277,320],
+        { svg: makeCardShadow(we.pdfCardHeight), 
+          fit: [277,Math.floor(300 * (we.pdfCardHeight||1))],
           relativePosition: { x: -14, y: -12 },
         },
         { 
@@ -236,7 +235,6 @@ export const downloadPdf = async () => {
   let skillsRemain = [...skills].sort((a,b) => a.order1 - b.order1)
 
   let tryCount = 0
-  let beforeIsBig = false
 
   while(skillsRemain.length > 0 && tryCount < 8){
     tryCount++
@@ -248,7 +246,9 @@ export const downloadPdf = async () => {
       columns.push({
         width: "*",
         marginBottom: 2,
-        marginTop: beforeIsBig ? -12 : 0,
+        marginLeft: 4,
+        marginRight: 4,
+        marginTop: sk.marginTop || 0,
         stack: [
           {
             alignment: 'center',
@@ -269,33 +269,7 @@ export const downloadPdf = async () => {
       columns,
       marginBottom: 4,
     })
-
-    if(group.some(x => x.isBig)){
-      beforeIsBig = true
-    }
   }
-  /*
-  for(let sk of skills){
-    const group = []
-    skillsContent.push({
-      columns: [
-        { width: 28,
-          svg: sk.icon,
-          height: 28,
-          marginTop: 2,
-        },
-        {    
-          width: "*",
-          lineHeight: 1,                  
-          text: sk.desc,
-          fontSize: 11,
-          marginLeft: 2,
-          marginBottom: 1,
-        },
-      ]
-    })
-  }
-  */
 
   const docDefinition: TDocumentDefinitions = {
     pageMargins: [ 25, 25, 25, 25 ],
@@ -354,7 +328,7 @@ export const downloadPdf = async () => {
                     columns: [  
                       { width: '*', text: "" },                    
                       { 
-                        marginTop: 1,
+                        marginTop: 3,
                         width: 12,
                         svg: icon_email_1,
                         height: 12,
@@ -377,7 +351,7 @@ export const downloadPdf = async () => {
                       { width: '*', text: "" },              
                       { 
                         width: 12,
-                        marginTop: 1,
+                        marginTop: 3,
                         svg: icon_location_1,
                         height: 11,
                       },
@@ -444,7 +418,7 @@ export const downloadPdf = async () => {
         ]
       },
       { 
-        marginTop: 6,
+        marginTop: 0,
         marginBottom: 4,
         text: "Experiencia Laboral",
         bold: true,
@@ -455,7 +429,24 @@ export const downloadPdf = async () => {
           columns,
           marginBottom: 12,
         }
-      }))
+      })),
+      { 
+        marginTop: 8,
+        marginBottom: 4,
+        text: "Últimos Proyectos",
+        bold: true,
+        fontSize: 14,
+      },
+      {
+        stack: [
+          ...(ultimosProyectos.map((e,i) => {
+            return {
+              ...makeBulletLine(getContent(e.es),0.9),
+              marginLeft: 8,
+            }
+          }))
+        ]
+      }
     ],
   }
 

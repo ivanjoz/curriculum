@@ -134,3 +134,30 @@ export const replaceSVGHeight = (svgContent: string, heights: number[]) => {
 
   return svgContent
 }
+
+export const makeCardShadow = (proportion?: number) => {
+
+
+  const heights = [322.52, 316.32, 310.11, 303.91, 300.19]
+
+  proportion = proportion || 1
+  for(let i = 0; i < heights.length; i++){
+    heights[i] = Math.floor(heights[i] * proportion)
+  }
+
+  return `
+  <?xml version="1.0" encoding="UTF-8"?>
+  <!-- Created with Inkscape (http://www.inkscape.org/) -->
+  <svg width="476" height="${heights[0]}" version="1.1" viewBox="0 0 476 ${heights[0]}" xmlns="http://www.w3.org/2000/svg">
+   <g transform="translate(-24.443 -41.668)">
+    <g fill="#222f6d">
+     <rect x="24.443" y="41.668" width="476" height="${heights[0]}" rx="20.826" ry="19.798" fill-opacity=".02" stroke-width=".88065"/>
+     <rect x="28.443" y="44.769" width="468" height="${heights[1]}" rx="21.419" ry="19.579" fill-opacity=".03" stroke-width=".86478"/>
+     <rect x="31.443" y="47.87" width="462" height="${heights[2]}" rx="18.437" ry="17.767" fill-opacity=".04" stroke-width=".85075"/>
+     <rect x="34.443" y="50.971" width="456" height="${heights[3]}" rx="15.785" ry="16.207" fill-opacity=".05" stroke-width=".83672"/>
+    </g>
+    <rect x="36.443" y="52.832" width="452" height="${heights[4]}" rx="13.663" ry="14.922" fill="#f7f8fd" stroke-width=".82792"/>
+   </g>
+  </svg> 
+  `
+} 
