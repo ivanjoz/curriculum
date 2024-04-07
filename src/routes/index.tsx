@@ -1,10 +1,9 @@
-import { JSX } from "solid-js"
+import { JSX, Show, createEffect, createSignal, on } from "solid-js"
 import { ITechnologies, IWordExperience, foda, technologies, studies, workExperience, skills, diaHabitual, IStudy, experienciaAdicional, socialNetworks, ultimosProyectos } from "~/content"
 import style from "../styles/main.module.css"
 import icon_location from '../../public/images/icon-location.svg?raw'
 import icon_email from '../../public/images/email-icon.svg?raw'
 import { IContent, getContent, parseSVG, parseYear } from "~/helpers"
-import { downloadPdf } from "~/handlers/pdf-export"
 
 interface ISkillsColumns {
   name: string
@@ -17,6 +16,7 @@ const yearInicio = 17
 const yearFin = 24
 
 export default function Home() {
+  const [downloadStartKey,setDownloadStartKey] = createSignal(0)
 
   const columns: ISkillsColumns[] = [
     { name: "", setContent: e => <div class={style.table_cell_1}>{e.name}</div> }, 
@@ -53,10 +53,11 @@ export default function Home() {
         <div>
           <button onClick={ev => {
             ev.stopPropagation()
-            downloadPdf()
+            setDownloadStartKey(Date.now())
           }}>Download</button>
         </div>
       </div>
+      <DownloadPdfCard downloadStartKey={downloadStartKey()} />
       <h2 class={`bold ${style.title}`}>Tecnologías / Años de Experiencia</h2>
       <div class={`flex w100 ${style.tecnologias_container}`}>
         <div class={style.table_main_container}>
@@ -269,4 +270,38 @@ const LineCard = (text: IContent, i?: number) => {
     { i !== 0 && <div class={`${style.dot_line}`}/>  }
     <div class={`${style.dot}`} />{getContent(text)}
   </div>
+}
+
+export interface IDownloadPdfCard {
+  downloadStartKey: number
+}
+
+const DownloadPdfCard = (props: IDownloadPdfCard) => {
+
+  const [startDownloadPDF,setStartDownloadPDF] = createSignal(false)
+
+  createEffect(on(() => props.downloadStartKey, () => {
+    if(startDownloadPDF() || !props.downloadStartKey){ return }
+    localStorage.setItem("_isDownloadInProgress","1")
+    setStartDownloadPDF(true)
+
+    const downloadWait = setInterval(() => {
+      console.log("download in progress::",localStorage.getItem("_isDownloadInProgress"))
+      if(!localStorage.getItem("_isDownloadInProgress")){
+        setInterval(() => {
+          clearInterval(downloadWait)
+          setStartDownloadPDF(false) 
+        },600)
+      }
+    },50)
+  }))
+
+  return <Show when={startDownloadPDF()}>
+    <iframe src={window.origin + "/pdf?accion=download"} class="w100" 
+      style={{ height: '200px', display: 'none' }} 
+    />
+    <div class="flex w100">
+      <h2>Generando PDF...</h2>
+    </div>
+  </Show>
 }

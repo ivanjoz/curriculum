@@ -9,100 +9,15 @@ import icon_email from '../../public/images/email-icon.svg?raw'
 import circle_svg from '../images/circle.svg?raw'
 import { getContent, makeCardShadow, parseYear, replaceSVGColor, replaceSVGHeight } from '~/helpers';
 
-export const generateSVGChart = async (): Promise<string> => {
-
-  const container = document.getElementById("svg-container")
-  const rem = 16
-  const rowHeight = Math.floor(rem * 1.6)
-
-  const height = ((technologies.length + 1) * rowHeight)
-
-  const svg = d3.select(container).append("svg")
-    .attr("width", 475).attr("height", height).attr("viewBox", `0 0 475 ${height}`)
-  
-  const cellWidth = rem * 12
-  const years = []
-  for(let year = 17; year <= 24; year++){
-    years.push(year)
-  }
-
-  const technologiesRows = [...technologies]
-  technologiesRows.unshift({ name: "", isYear: true } as ITechnologies)
-
-  for(let i = 0; i < technologiesRows.length; i++){
-    const isEvent = i % 2 === 0
-    const fillColor = isEvent ? "#f4f1ff" : "white"
-    const e = technologiesRows[i]
-
-    svg.append("rect")
-      .attr("x", 0).attr("y", i * rowHeight)
-      .attr("width", cellWidth).attr("height", rowHeight)
-      .style("fill", fillColor)
-      .style("stroke", "black") // color of the border
-      .style("stroke-width", 0); // width of the border
-
-    svg.append("text")
-      .style("font-size", "16px")
-      .attr("x", 8) // center of the rect
-      .attr("y", i * rowHeight + Math.floor((rowHeight * 0.6))) // center of the rect
-      // .attr("text-anchor", "middle") // center the text
-      .attr("dominant-baseline", "middle") // vertically center text
-      .text(e.name)
-      .style("fill", "black")
-
-
-    let currentWidth = cellWidth
-    for(let j = 0; j < years.length; j++){
-      const year = years[j]
-      const width = 2 * rem
-
-      svg.append("rect")
-        .attr("x", currentWidth).attr("y", i * rowHeight)
-        .attr("width", width).attr("height", rowHeight)
-        .style("fill", fillColor)
-        .style("stroke", "black") // color of the border
-        .style("stroke-width", 0); // width of the border
-
-      const yearPoint = e.years?.find(x => x[0] === year)
-      if(yearPoint){
-        let height = 0
-        height = (yearPoint[1] - 1) * 2
-        if(height < 3){ height = 3 } 
-        if(height > 18){ height = 18 } 
-        
-        svg.append("rect")
-          .attr("x", currentWidth)
-          .attr("y", i * rowHeight)
-          .attr("width", width).attr("height", height)
-          .style("fill", "black")
-      }
-
-      if(e.isYear){
-        svg.append("text")
-          .style("font-size", "14px")
-          .attr("x", currentWidth) // center of the rect
-          .attr("y", i * rowHeight + Math.floor((rowHeight * 0.6))) // center of the rect
-          // .attr("text-anchor", "middle") // center the text
-          .attr("dominant-baseline", "middle") // vertically center text
-          .text(String(year))
-          .style("fill", "black")
-      }        
-      currentWidth += width
-    }
-  }
-  // get the svg code as string
-  const svgCode = (container as HTMLDivElement).innerHTML
-  return svgCode
-}
-
 export const downloadPdf = async () => {
+  localStorage.setItem("_isDownloadInProgress","1")
 
   pdf.fonts = {
     Roboto: {
       normal: window.origin + '/libs/open-sans-v40-latin-regular.ttf',
       bold: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.3.0-beta.1/fonts/Roboto/Roboto-Medium.ttf',
-      italics: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.3.0-beta.1/fonts/Roboto/Roboto-Italic.ttf',
-      bolditalics: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.3.0-beta.1/fonts/Roboto/Roboto-MediumItalic.ttf'
+      italics: window.origin + '/libs/open-sans-v40-latin-regular.ttf',
+      bolditalics: window.origin + '/libs/open-sans-v40-latin-regular.ttf',
     },
   }
 
@@ -452,7 +367,8 @@ export const downloadPdf = async () => {
 
   const pdfDoc = pdf.createPdf(docDefinition)
   console.log(pdfDoc)
-  pdfDoc.download("example.pdf")
+  pdfDoc.download("ivan_angulo_cv_peru.pdf")
+  localStorage.setItem("_isDownloadInProgress","")
 }
 
 export const makeCabecera = async () => {
@@ -469,10 +385,6 @@ export const makeCabecera = async () => {
     }
   })
 
-  // console.log(profilePhotoB64)
-
-  // console.log(cabecera_svg)
-
   // extrae la image
   const idx1 = cabecera_svg.indexOf('data:image/')
   const idx2 = cabecera_svg.indexOf('"', idx1 + 1)
@@ -480,4 +392,89 @@ export const makeCabecera = async () => {
   const cabecera_svg_new = cabecera_svg.replace(img, profilePhotoB64)
 
   return cabecera_svg_new
+}
+
+export const generateSVGChart = async (): Promise<string> => {
+
+  const container = document.createElement("div")
+  const rem = 16
+  const rowHeight = Math.floor(rem * 1.6)
+
+  const height = ((technologies.length + 1) * rowHeight)
+
+  const svg = d3.select(container).append("svg")
+    .attr("width", 475).attr("height", height).attr("viewBox", `0 0 475 ${height}`)
+  
+  const cellWidth = rem * 12
+  const years = []
+  for(let year = 17; year <= 24; year++){
+    years.push(year)
+  }
+
+  const technologiesRows = [...technologies]
+  technologiesRows.unshift({ name: "", isYear: true } as ITechnologies)
+
+  for(let i = 0; i < technologiesRows.length; i++){
+    const isEvent = i % 2 === 0
+    const fillColor = isEvent ? "#f4f1ff" : "white"
+    const e = technologiesRows[i]
+
+    svg.append("rect")
+      .attr("x", 0).attr("y", i * rowHeight)
+      .attr("width", cellWidth).attr("height", rowHeight)
+      .style("fill", fillColor)
+      .style("stroke", "black") // color of the border
+      .style("stroke-width", 0); // width of the border
+
+    svg.append("text")
+      .style("font-size", "16px")
+      .attr("x", 8) // center of the rect
+      .attr("y", i * rowHeight + Math.floor((rowHeight * 0.6))) // center of the rect
+      .attr("dominant-baseline", "middle") // vertically center text
+      .text(e.name)
+      .style("fill", "black")
+
+
+    let currentWidth = cellWidth
+    for(let j = 0; j < years.length; j++){
+      const year = years[j]
+      const width = 2 * rem
+
+      svg.append("rect")
+        .attr("x", currentWidth).attr("y", i * rowHeight)
+        .attr("width", width).attr("height", rowHeight)
+        .style("fill", fillColor)
+        .style("stroke", "black") // color of the border
+        .style("stroke-width", 0); // width of the border
+
+      const yearPoint = e.years?.find(x => x[0] === year)
+      if(yearPoint){
+        let height = 0
+        height = (yearPoint[1] - 1) * 2
+        if(height < 3){ height = 3 } 
+        if(height > 18){ height = 18 } 
+        
+        svg.append("rect")
+          .attr("x", currentWidth)
+          .attr("y", i * rowHeight)
+          .attr("width", width).attr("height", height)
+          .style("fill", "black")
+      }
+
+      if(e.isYear){
+        svg.append("text")
+          .style("font-size", "14px")
+          .attr("x", currentWidth) // center of the rect
+          .attr("y", i * rowHeight + Math.floor((rowHeight * 0.6))) // center of the rect
+          // .attr("text-anchor", "middle") // center the text
+          .attr("dominant-baseline", "middle") // vertically center text
+          .text(String(year))
+          .style("fill", "black")
+      }        
+      currentWidth += width
+    }
+  }
+  // get the svg code as string
+  const svgCode = (container as HTMLDivElement).innerHTML
+  return svgCode
 }

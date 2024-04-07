@@ -1,6 +1,14 @@
-import { downloadPdf, generateSVGChart } from "~/handlers/pdf-export"
+import { createEffect } from 'solid-js';
+import { downloadPdf, generateSVGChart } from '~/handlers/pdf-maker';
 
-export default function Home() {
+export default function PdfPage() {
+
+  createEffect(() => {
+    if(window.location.search.includes("accion=download")){
+      downloadPdf()
+    }
+  })
+
   return <div style={{ padding: '16px' }}>
     <h1>hola</h1>
     <div id="svg-container"></div>
