@@ -9,15 +9,14 @@ import icon_email from '../../public/images/email-icon.svg?raw'
 import circle_svg from '../images/circle.svg?raw'
 import { getContent, makeCardShadow, parseYear, replaceSVGColor, replaceSVGHeight } from '~/helpers';
 
-export const downloadPdf = async () => {
-  localStorage.setItem("_isDownloadInProgress","1")
-
+export const downloadPdf = async (returnAsBase64?: boolean) => {
+  const origin = window.location.origin
   pdf.fonts = {
     Roboto: {
-      normal: window.origin + '/libs/open-sans-v40-latin-regular.ttf',
-      bold: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.3.0-beta.1/fonts/Roboto/Roboto-Medium.ttf',
-      italics: window.origin + '/libs/open-sans-v40-latin-regular.ttf',
-      bolditalics: window.origin + '/libs/open-sans-v40-latin-regular.ttf',
+      normal: origin + '/libs/open-sans-v40-latin-regular.ttf',
+      bold:  origin + '/libs/open-sans-v40-latin-600.ttf',
+      italics: origin + '/libs/open-sans-v40-latin-regular.ttf',
+      bolditalics: origin + '/libs/open-sans-v40-latin-regular.ttf',
     },
   }
 
@@ -287,7 +286,7 @@ export const downloadPdf = async () => {
         ]
       },
       { 
-        marginTop: 19,
+        marginTop: 14,
         marginBottom: 4,
         text: "Tecnologías & Años de Experiencia",
         fontSize: 12,
@@ -333,7 +332,7 @@ export const downloadPdf = async () => {
         ]
       },
       { 
-        marginTop: 0,
+        marginTop: -4,
         marginBottom: 4,
         text: "Experiencia Laboral",
         bold: true,
@@ -366,14 +365,47 @@ export const downloadPdf = async () => {
   }
 
   const pdfDoc = pdf.createPdf(docDefinition)
-  console.log(pdfDoc)
-  pdfDoc.download("ivan_angulo_cv_peru.pdf")
-  localStorage.setItem("_isDownloadInProgress","")
+  const blob = await (pdfDoc.getBlob as any)() as unknown as Blob
+  // convert blob to base64
+  const reader = new FileReader()
+  reader.readAsDataURL(blob)
+  const base64String = await new Promise<string>(resolve => {
+    reader.onloadend = () => {
+      const base64data = reader.result
+      resolve(base64data as string)
+    }
+  })
+  console.log("base64data::", base64String)
+  debugger
+  return base64String
+  // const buffer = await pdfDoc.bufferPromise  
+  /*
+  console.log("pdfdoc::", buffer, pdfDoc, returnAsBase64)
+  if(returnAsBase64){
+    debugger
+    let b64
+    try { 
+      b64 = await (new Promise<string>(resolve => {
+        pdfDoc.getBlob((b64String: string) => {     
+          console.log("b64String 123", b64String)     
+          resolve(b64String)
+        })
+      }))
+      console.log("b64String promise", b64)
+    } catch(e){
+      console.error(e)
+    }
+    debugger
+    return b64
+  } else {
+    pdfDoc.download("ivan_angulo_cv_peru.pdf")
+  }
+  */
 }
 
 export const makeCabecera = async () => {
 
-  const profilePhotoRequest = await fetch("/images/ivan-angulo-profile.jpeg")
+  const profilePhotoRequest = await fetch("/images/ivan-angulo-profile2.jpeg")
   const profilePhoto = await profilePhotoRequest.blob()
 
   const profilePhotoB64 = await new Promise((resolve, reject) => {

@@ -18,6 +18,15 @@ import linkedin_icon_svg from '../public/images/linkedin-icon.svg?raw'
 import github_icon_svg from '../public/images/github-icon.svg?raw'
 import medium_icon_svg from '../public/images/medium-icon.svg?raw'
 
+export const mainContent = {
+  tecnologias: {
+    es: "Tecnologías / Años de Experiencia",
+  },
+  descripcion: {
+    es: "5+ años de experiencia desarrollando sistemas cloud con Node.Js, Go y C# y AWS, Linux, frontend con React y bases de datos SQL."
+  }
+}
+
 export const diaHabitual = [
   { percent: 72, 
     content: { 

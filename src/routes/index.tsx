@@ -1,9 +1,10 @@
 import { JSX, Show, createEffect, createSignal, on } from "solid-js"
-import { ITechnologies, IWordExperience, foda, technologies, studies, workExperience, skills, diaHabitual, IStudy, experienciaAdicional, socialNetworks, ultimosProyectos } from "~/content"
+import { ITechnologies, IWordExperience, foda, technologies, studies, workExperience, skills, diaHabitual, IStudy, experienciaAdicional, socialNetworks, ultimosProyectos, mainContent } from "~/content"
 import style from "../styles/main.module.css"
 import icon_location from '../../public/images/icon-location.svg?raw'
 import icon_email from '../../public/images/email-icon.svg?raw'
 import { IContent, getContent, parseSVG, parseYear } from "~/helpers"
+import { Spinner } from "~/components/Counter"
 
 interface ISkillsColumns {
   name: string
@@ -48,17 +49,19 @@ export default function Home() {
     <AboutMeLayer css={style.about_me_layer}/>
     <AboutMeLayer css={style.about_me_layer_inline}/>
     <div class={style.content}>
-      <div class="flex jc-between">
+      <div class="flex jc-between" style={{ "margin-bottom": '-0.8rem' }}>
         <div></div>
         <div>
           <button onClick={ev => {
             ev.stopPropagation()
             setDownloadStartKey(Date.now())
-          }}>Download</button>
+          }}>Descarga</button>
         </div>
       </div>
       <DownloadPdfCard downloadStartKey={downloadStartKey()} />
-      <h2 class={`bold ${style.title}`}>Tecnologías / Años de Experiencia</h2>
+      <h2 class={`bold ${style.title}`}>
+        { getContent(mainContent.tecnologias )}
+      </h2>
       <div class={`flex w100 ${style.tecnologias_container}`}>
         <div class={style.table_main_container}>
           <table class={`w100 ${style.table_main}`}>
@@ -183,8 +186,8 @@ const AboutMeLayer = (props: IAboutMeLayer) => {
       <div class={`${style.letter} ${style.developer}`}>
         <h2 class={`h22 bold ${style.experiencia1}`}>Software Developer FullStack</h2>
       </div >
-      <div class={`${style.letter} ${style.about_me}`} style={{ padding: '8px', "text-align": 'center' }}>
-        5+ años de experiencia desarrollando sistemas cloud con Node.Js, Go y C# y AWS, Linux, frontend con React y bases de datos SQL.
+      <div class={`${style.letter} ${style.about_me}`} style={{ padding: '0.7vh', "text-align": 'center' }}>
+        { getContent(mainContent.descripcion) }
       </div>
       <div class="flex">
       { socialNetworks.map(e => {
@@ -282,16 +285,34 @@ const DownloadPdfCard = (props: IDownloadPdfCard) => {
 
   createEffect(on(() => props.downloadStartKey, () => {
     if(startDownloadPDF() || !props.downloadStartKey){ return }
-    localStorage.setItem("_isDownloadInProgress","1")
+    localStorage.removeItem("b64Pdf")
     setStartDownloadPDF(true)
 
     const downloadWait = setInterval(() => {
-      console.log("download in progress::",localStorage.getItem("_isDownloadInProgress"))
-      if(!localStorage.getItem("_isDownloadInProgress")){
-        setInterval(() => {
-          clearInterval(downloadWait)
-          setStartDownloadPDF(false) 
-        },600)
+      // console.log("download in progress...")
+      let b64Pdf = localStorage.getItem("b64Pdf")
+      if(b64Pdf){
+        localStorage.removeItem("b64Pdf")
+
+        b64Pdf = atob(b64Pdf.split('base64,')[1])
+        const pdfArray = new Uint8Array(b64Pdf.length)
+        for (let i = 0; i < b64Pdf.length; i++){
+          pdfArray[i] = b64Pdf.charCodeAt(i)
+        }
+        const blob = new Blob([pdfArray], { type: 'application/pdf' })
+        //download the blob as a pdf file
+        const url = URL.createObjectURL(blob)
+        const a = document.createElement('a')
+        a.href = url
+        a.download = "ivan_angulo_cv.pdf"
+        a.click()
+        a.remove()
+        /*
+        const url = URL.createObjectURL(blob)
+        window.open(url, "_blank")
+        */
+        clearInterval(downloadWait)
+        setStartDownloadPDF(false)
       }
     },50)
   }))
@@ -300,8 +321,9 @@ const DownloadPdfCard = (props: IDownloadPdfCard) => {
     <iframe src={window.origin + "/pdf?accion=download"} class="w100" 
       style={{ height: '200px', display: 'none' }} 
     />
-    <div class="flex w100">
-      <h2>Generando PDF...</h2>
-    </div>
+    <Spinner className="card-c3"> 
+      <div class="bold h3">Generando Documento PDF...</div>
+      <div class="h5">Usando pdfmake y D3</div>
+    </Spinner>
   </Show>
 }

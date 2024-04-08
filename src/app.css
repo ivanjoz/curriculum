@@ -79,15 +79,35 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 4px;
 }
 
-@media (min-width: 1280px  ) {
+@media (min-width: 1380px  ) {
   body { 
     --padding-sides: 4vw; 
     --side-layer-width: 24vw;
   }
 }
-@media (min-width: 1460px  ) {
+@media (min-width: 1560px  ) {
   body { 
     --padding-sides: 6vw; 
     --side-layer-width: 23vw;
   }
 }
+
+.ml-02  { margin-left: 2px; }
+.ml-04  { margin-left: 4px; }
+.ml-06  { margin-left: 6px; }
+.ml-08  { margin-left: 8px; }
+.ml-10  { margin-left: 10px; }
+.ml-12  { margin-left: 12px; }
+.ml-14  { margin-left: 14px; }
+.ml-16  { margin-left: 16px; }
+.ml-20  { margin-left: 20px; }
+
+.mr-02 { margin-right: 2px; }
+.mr-04 { margin-right: 4px; }
+.mr-06 { margin-right: 6px; }
+.mr-08 { margin-right: 08px; }
+.mr-10 { margin-right: 10px; }
+.mr-12 { margin-right: 12px; }
+.mr-14 { margin-right: 14px; }
+.mr-16 { margin-right: 16px; }
+.mr-20 { margin-right: 20px; }

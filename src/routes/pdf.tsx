@@ -3,9 +3,10 @@ import { downloadPdf, generateSVGChart } from '~/handlers/pdf-maker';
 
 export default function PdfPage() {
 
-  createEffect(() => {
+  createEffect(async () => {
     if(window.location.search.includes("accion=download")){
-      downloadPdf()
+      const base64pdf = await downloadPdf(true)
+      window.localStorage.setItem("b64Pdf",base64pdf as string)
     }
   })
 
@@ -18,9 +19,10 @@ export default function PdfPage() {
     }}>
       Generar SVG
     </button>
-    <button onclick={ev => {
+    <button onclick={async (ev) => {
       ev.stopPropagation()
-      downloadPdf()
+      const base64pdf = await downloadPdf(true)
+      window.localStorage.setItem("b64Pdf",base64pdf as string)
     }}>
       Download
     </button>
