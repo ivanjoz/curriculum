@@ -88,7 +88,7 @@ export default function Home() {
         </div>
         <div class={`flex ${style.experiencia_container}`}>
           <div class={`bold h3 tt-c1 mb-06 ${style.subtitle}`}>
-            Experiencia adicional en:
+            {getContent(mainContent.sub1)}
           </div>
           <div class="w100 block-margin">
           { experienciaAdicional.map((e,i) => {
@@ -99,7 +99,7 @@ export default function Home() {
           <div class={`${style.line_border}`}>
           </div>
           <div class={`bold h3 tt-c1 mb-06 ${style.subtitle}`}>
-            Día de trabajo habitual:
+            {getContent(mainContent.sub2)}
           </div>
           <table>
             <tbody>
@@ -114,7 +114,7 @@ export default function Home() {
           </table>
         </div>
       </div>
-      <h2 class={`bold ${style.title}`}>Skills</h2>
+      <h2 class={`bold ${style.title}`}>{getContent(mainContent.sub3)}</h2>
       <div class={`flex ${style.skill_card_container}`}>
         { skills.map(e => {
             return <div class={`${style.skill_card}`}>
@@ -124,7 +124,7 @@ export default function Home() {
           })
         }
       </div>
-      <h2 class={`bold ${style.title}`}>Experiencia Laboral</h2>
+      <h2 class={`bold ${style.title}`}>{getContent(mainContent.sub4)}</h2>
       {/* EXPERIENCIA LABORAL */}
       <div class={style.table_card_container}>
         { workExperience.map(e => {
@@ -132,14 +132,14 @@ export default function Home() {
           })
         }
       </div>
-      <h2 class={`bold ${style.title}`}>Últimos Proyectos</h2>
+      <h2 class={`bold ${style.title}`}>{getContent(mainContent.sub5)}</h2>
       <div class="block-margin" style={{ "padding-left": '0.8rem' }}>
         { ultimosProyectos.map((e,i) => {
             return LineCard(e,i)
           })
         }
       </div>
-      <h2 class={`bold ${style.title}`}>F.O.D.A</h2>
+      <h2 class={`bold ${style.title}`}>{getContent(mainContent.sub6)}</h2>
       <div class={`${style.table_card_container}`}>
         { foda.map(item => {
             return <div class={`block-margin4 ${style.foda_card}`}>
@@ -152,7 +152,7 @@ export default function Home() {
           })
         }
       </div>
-      <h2 class={`bold ${style.title}`}>Estudios</h2>
+      <h2 class={`bold ${style.title}`}>{getContent(mainContent.sub7)}</h2>
       <div class={style.table_card_container}>
         { studies.map(e => {
             return <StudyCard args={e} />
@@ -300,17 +300,14 @@ const DownloadPdfCard = (props: IDownloadPdfCard) => {
           pdfArray[i] = b64Pdf.charCodeAt(i)
         }
         const blob = new Blob([pdfArray], { type: 'application/pdf' })
-        //download the blob as a pdf file
+        
         const url = URL.createObjectURL(blob)
         const a = document.createElement('a')
         a.href = url
         a.download = "ivan_angulo_cv.pdf"
         a.click()
         a.remove()
-        /*
-        const url = URL.createObjectURL(blob)
-        window.open(url, "_blank")
-        */
+ 
         clearInterval(downloadWait)
         setStartDownloadPDF(false)
       }

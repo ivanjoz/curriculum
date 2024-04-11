@@ -24,6 +24,27 @@ export const mainContent = {
   },
   descripcion: {
     es: "5+ años de experiencia desarrollando sistemas cloud con Node.Js, Go y C# y AWS, Linux, frontend con React y bases de datos SQL."
+  },
+  sub1: {
+    es: "Experiencia adicional en:",
+  },
+  sub2: {
+    es: "Día de trabajo habitual:",
+  },
+  sub3: {
+    es: "Skills:",
+  },
+  sub4: {
+    es: "Experiencia Laboral:",
+  },
+  sub5: {
+    es: "Últimos Proyectos:",
+  },
+  sub6: {
+    es: "F.O.D.A",
+  },
+  sub7: {
+    es: "Estudios",
   }
 }
 
