@@ -1,0 +1,1 @@
+import{p as n,C as i,w as l,h as o,y as m}from"./assets/web-CRTvOHp1.js";import{T as s}from"./assets/index-DiPfgCPP.js";var p=m("<main><!$><!/><h1>About");function f(){return(()=>{var e=n(p),r=e.firstChild,[t,a]=i(r.nextSibling);return t.nextSibling,l(e,o(s,{children:"About"}),t,a),e})()}export{f as default};

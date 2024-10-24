@@ -1,1 +1,0 @@
-import{n as a,B as i,t as l,h as o,x as m}from"./web-CDM-y1L5.js";import{T as s}from"./index-e2X7BjBC.js";var p=m("<main><!$><!/><h1>About");function $(){return(()=>{var e=a(p),r=e.firstChild,[t,n]=i(r.nextSibling);return t.nextSibling,l(e,o(s,{children:"About"}),t,n),e})()}export{$ as default};

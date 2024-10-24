@@ -2,6 +2,7 @@ import { defineConfig } from "@solidjs/start/config"
 import { optimizeCssModules } from 'vite-plugin-optimize-css-modules'
 import type { Options } from "vite-plugin-solid"
 import markdownRawPlugin from 'vite-raw-plugin'
+import { viteSingleFile } from "vite-plugin-singlefile"
 import path from 'path'
 
 const IS_PRD = process.env.npm_lifecycle_event !== 'dev'
@@ -25,10 +26,10 @@ export default defineConfig({
     ssr: IS_PRD,
   } as Options,
   vite() {
-    return { 
+    return {
       plugins: [
-        IS_PRD && optimizeCssModules(), 
-        markdownRawPlugin({ fileRegex: /\.md$/ })
+        IS_PRD && optimizeCssModules(),
+        markdownRawPlugin({ fileRegex: /\.md$/ }),
       ].filter(x => x),
       resolve: {
         alias: {
@@ -38,6 +39,16 @@ export default defineConfig({
       server: {
         hmr: false,
       },
+      build: {
+        rollupOptions: {
+          output: {
+            // manualChunks: false,
+            inlineDynamicImports: false,
+            entryFileNames: '[name].js',   // currently does not work for the legacy bundle
+            assetFileNames: '[name].[ext]', // currently does not work for images
+          }
+        }
+      }
     }
   }
 })
