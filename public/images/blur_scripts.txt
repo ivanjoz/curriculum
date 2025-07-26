@@ -1,0 +1,1 @@
+magick ivan-angulo-profile.jpg -resize 200x200 -blur 0x8 -quality 25 -define webp:speed=0 -strip profile-placeholder.webp

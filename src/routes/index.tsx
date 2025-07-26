@@ -1,10 +1,11 @@
 import { JSX, Show, createEffect, createSignal, on } from "solid-js"
 import { Spinner } from "~/components/Counter"
-import { SvgImage } from "~/components/svgImage"
+import { ImagePlaceholder, SvgImage } from "~/components/svgImage"
 import { IStudy, ITechnologies, IWordExperience, diaHabitual, experienciaAdicional, foda, mainContent, skills, socialNetworks, studies, technologies, ultimosProyectos, workExperience } from "~/content"
 import { IContent, getContent, parseYear } from "~/helpers"
 import icon_email from '../../public/images/email-icon.svg?raw'
 import icon_location from '../../public/images/icon-location.svg?raw'
+import placeholder_profile from '../images/profile-placeholder.webp?inline'
 import style from "../styles/main.module.css"
 
 interface ISkillsColumns {
@@ -19,6 +20,7 @@ const yearFin = 24
 
 export default function Home() {
   const [downloadStartKey,setDownloadStartKey] = createSignal(0)
+  console.log("placeholder_profile", placeholder_profile)
 
   const columns: ISkillsColumns[] = [
     { name: "", setContent: e => <div class={style.table_cell_1}>{e.name}</div> }, 
@@ -171,8 +173,10 @@ interface IAboutMeLayer {
 const AboutMeLayer = (props: IAboutMeLayer) => {
   return <div class={props.css}>
     <div>
-      <div class={style.photo_circle}>
-        <img src="images/ivan-angulo-profile.webp" alt="ivan angulo reyna profile" />
+      <div class={style.photo_circle} >
+        <ImagePlaceholder class={""} 
+          src="images/ivan-angulo-profile.webp" placeHolder={placeholder_profile}
+        />
       </div>
       <div class={`${style.letter}`}>
         <h1 class={`h1 bold ${style.ivan_nombre}`}>Iván J. Angulo</h1>

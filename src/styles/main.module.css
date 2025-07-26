@@ -88,9 +88,19 @@
   overflow:hidden;
   padding: calc(0.4rem + 0.2vw);
   flex-shrink: 0;
+  object-fit: cover;
 }
 
-.photo_circle > img {
+.photo_circle > div {
+  width: 100%;
+  height: 100%;
+}
+
+.photo_circle picture {
+  display: contents;
+}
+
+.photo_circle img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -438,4 +448,20 @@
     --side-layer-width: 0px;
     --content-padding: 1vw;
   }
+}
+
+
+/* COMPONENTES */
+.image_placeholder_ctn {
+  position: relative;
+}
+.image_placeholder_ctn img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+.image_placeholder_ctn img:last-of-type {
+  z-index: 2;
 }
