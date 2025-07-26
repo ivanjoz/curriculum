@@ -1,0 +1,1 @@
+import{t as n,F as i,A as l,j as o,w as m}from"./web-CsoLPdnZ.js";import{T as s}from"./index-Cx4ZX3AV.js";var p=m("<main><!$><!/><h1>About");function f(){return(()=>{var e=n(p),r=e.firstChild,[t,a]=i(r.nextSibling);return t.nextSibling,l(e,o(s,{children:"About"}),t,a),e})()}export{f as default};

@@ -1,10 +1,11 @@
 import { JSX, Show, createEffect, createSignal, on } from "solid-js"
-import { ITechnologies, IWordExperience, foda, technologies, studies, workExperience, skills, diaHabitual, IStudy, experienciaAdicional, socialNetworks, ultimosProyectos, mainContent } from "~/content"
-import style from "../styles/main.module.css"
-import icon_location from '../../public/images/icon-location.svg?raw'
-import icon_email from '../../public/images/email-icon.svg?raw'
-import { IContent, getContent, parseSVG, parseYear } from "~/helpers"
 import { Spinner } from "~/components/Counter"
+import { SvgImage } from "~/components/svgImage"
+import { IStudy, ITechnologies, IWordExperience, diaHabitual, experienciaAdicional, foda, mainContent, skills, socialNetworks, studies, technologies, ultimosProyectos, workExperience } from "~/content"
+import { IContent, getContent, parseYear } from "~/helpers"
+import icon_email from '../../public/images/email-icon.svg?raw'
+import icon_location from '../../public/images/icon-location.svg?raw'
+import style from "../styles/main.module.css"
 
 interface ISkillsColumns {
   name: string
@@ -118,7 +119,7 @@ export default function Home() {
       <div class={`flex ${style.skill_card_container}`}>
         { skills.map(e => {
             return <div class={`${style.skill_card}`}>
-              <img class={`${style.skill_image}`} alt="" src={parseSVG(e.icon as string)}/>
+              <SvgImage class={style.skill_image} src={e.icon}/>
               <div class={`${style.skill_descrip}`}>{getContent(e.desc)}</div>
             </div>
           })
@@ -177,8 +178,7 @@ const AboutMeLayer = (props: IAboutMeLayer) => {
         <h1 class={`h1 bold ${style.ivan_nombre}`}>Iván J. Angulo</h1>
       </div>
       <div class={`flex ${style.location_container}`}>
-        <img src={parseSVG(icon_location)} alt="" 
-          style={{ "margin-right": '3px', width: '1rem', height: '1rem' }} />
+        <SvgImage style={{ "margin-right": '3px', width: '1rem', height: '1rem' }} src={icon_location as string} prerender={true}/>
         <div class={`${style.location}`}>Trujillo - Perú</div>
       </div>
     </div>
@@ -195,14 +195,13 @@ const AboutMeLayer = (props: IAboutMeLayer) => {
             ev.stopPropagation()
             window.open(e.url)
           }}>
-            <img src={parseSVG(e.icon)} alt="" />
+            <SvgImage src={e.icon} prerender={true}/>
           </div>
         })
       }
       </div>
       <div class={`flex ${style.email_icon}`}>
-        <img src={parseSVG(icon_email)} alt="" 
-            style={{ "margin-right": '6px', width: '1rem', height: '1rem' }} />
+        <SvgImage src={icon_email} style={{ "margin-right": '6px', width: '1rem', height: '1rem' }} prerender={true}/>
         <div class={`h3 ${style.location}`}>
           <a href="mailto:ivan@un.pe" class={`${style.email}`}>ivan@un.pe</a>
         </div>
@@ -220,8 +219,12 @@ const WordExperienceCard = (props: IWordExperienceCard) => {
   return <div class={style.table_card}>
     <div style={{ display: 'flex' }}>
       <div class={style.table_card_image_ctn}>
-        <img class={style.table_card_image} alt="" 
-          src={props.args.logoImg || parseSVG(props.args.logo as string)}/>
+        {
+          props.args.logoImg ?
+          <img class={style.table_card_image} alt="" src={props.args.logoImg}/>
+          :
+          <SvgImage src={props.args.logo as string} class={style.table_card_image}/>
+        }
       </div>
       <div>
         <div class="h2 bold tt-c1">{props.args.company}</div>
@@ -249,7 +252,7 @@ const StudyCard = (props: IStudyCard) => {
   return <div class={style.table_card}>
     <div style={{ display: 'flex' }}>
       <div class={style.table_card_image_ctn}>
-        <img class={style.table_card_image} alt="" src={parseSVG(props.args.logo as string)}/>
+        <SvgImage class={style.table_card_image} src={props.args.logo}/>
       </div>
       <div>
         <div class="h2 bold tt-c1">{props.args.name}</div>
