@@ -85,17 +85,21 @@ for (const folder of buildSubFolder) {
     fs.mkdirSync(staticPath)
   }
 
-  const files = fs.readdirSync(buildPath)
+  try {
+    const files = fs.readdirSync(buildPath)
 
-  for (const file of files) {
-    const filePath = path.join(buildPath, file)
-    if (fs.lstatSync(filePath).isDirectory()) { continue }
-
-    const fileArray = file.split(".")
-    const ext = fileArray[fileArray.length - 1]
-    if (ext === "gz" || ext === "br") { continue }
-    console.log("Moviendo: ", path.join(staticPath, file))
-    fs.copyFileSync(filePath, path.join(staticPath, file))
+    for (const file of files) {
+      const filePath = path.join(buildPath, file)
+      if (fs.lstatSync(filePath).isDirectory()) { continue }
+  
+      const fileArray = file.split(".")
+      const ext = fileArray[fileArray.length - 1]
+      if (ext === "gz" || ext === "br") { continue }
+      console.log("Moviendo: ", path.join(staticPath, file))
+      fs.copyFileSync(filePath, path.join(staticPath, file))
+    } 
+  } catch (error) {
+    console.log(error)
   }
 }
 
