@@ -1,6 +1,7 @@
 
 dist
 .solid
+.svelte-kit
 .output
 .vercel
 .netlify

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="362.61874"
+   height="373.60001"
+   viewBox="0 0 362.61874 373.60001"
+   fill="none"
+   version="1.1"
+   id="svg32"
+   sodipodi:docname="logo-upn-nuevo.svg"
+   inkscape:version="1.3.1 (91b66b0783, 2023-11-16)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs32" />
+  <sodipodi:namedview
+     id="namedview32"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="0.69326683"
+     inkscape:cx="-150.01439"
+     inkscape:cy="72.122302"
+     inkscape:window-width="1920"
+     inkscape:window-height="1008"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg32" />
+  <path
+     d="M 362.61874,0 H 0 v 373.6 h 362.61874 z"
+     fill="#fdba30"
+     id="path1"
+     style="stroke-width:0.672458" />
+  <g
+     id="g32"
+     transform="translate(2,2)">
+    <path
+       d="M 175.1307,48.201196 V 324.99892 H 134.68078 V 122.19213 l -1.11433,1.00289 c -17.82917,16.82628 -37.664109,31.64677 -58.836249,44.12719 v -45.79867 c 11.14323,-7.80026 21.7293,-16.38055 31.646769,-25.629431 15.37766,-14.374767 29.3067,-30.421018 41.34138,-47.804456 h 27.41235 z"
+       fill="#000000"
+       id="path5"
+       style="stroke-width:1.11432" />
+    <path
+       d="m 290.57456,121.63497 v 45.79867 C 269.29099,154.95323 249.56748,140.0213 231.73831,123.30645 l -1.11433,-1.00289 V 325.11035 H 190.17406 V 48.200974 h 27.52378 c 12.03469,17.383438 25.85229,33.429689 41.34138,47.804567 9.80604,9.248879 20.39211,17.829169 31.53534,25.629429 z"
+       fill="#000000"
+       id="path6"
+       style="stroke-width:1.11432" />
+  </g>
+</svg>

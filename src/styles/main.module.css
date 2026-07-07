@@ -255,6 +255,7 @@
 }
 
 .social_icon {
+  display: block;
   width: 3.4rem;
   height: 3.4rem;
   position: relative;
@@ -263,6 +264,7 @@
   border-radius: 50%;
   padding: 3px;
   cursor: pointer;
+  text-decoration: none;
 }
 .social_icon > img {
   width: 100%;

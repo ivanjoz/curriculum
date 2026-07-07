@@ -2,27 +2,29 @@
   "name": "curriculum",
   "type": "module",
   "scripts": {
-    "dev": "vinxi dev",
-    "build": "vinxi build && node build.js",
-    "start": "vinxi start"
+    "dev": "vite dev",
+    "build": "vite build",
+    "preview": "vite preview",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json"
   },
   "dependencies": {
-    "@solidjs/meta": "^0.29.4",
-    "@solidjs/router": "^0.15.0",
-    "@solidjs/start": "^1.1.0",
     "d3": "^7.9.0",
-    "pdfmake": "^0.3.0-beta.18",
-    "solid-js": "^1.9.5",
-    "vinxi": "^0.5.7",
-    "vite-plugin-inline-source": "^3.0.0",
-    "vite-raw-plugin": "^1.0.2"
+    "pdfmake": "^0.3.0-beta.18"
   },
   "engines": {
     "node": ">=22"
   },
   "devDependencies": {
+    "@sveltejs/adapter-static": "^3.0.10",
+    "@sveltejs/kit": "^2.69.1",
+    "@sveltejs/vite-plugin-svelte": "^7.1.4",
+    "@tailwindcss/vite": "^4.3.2",
     "@types/d3": "^7.4.3",
     "@types/pdfmake": "^0.2.11",
-    "vite-plugin-optimize-css-modules": "^1.2.0"
+    "svelte": "^5.56.4",
+    "svelte-check": "^4.3.4",
+    "tailwindcss": "^4.3.2",
+    "typescript": "^6.0.3",
+    "vite": "^8.1.3"
   }
 }

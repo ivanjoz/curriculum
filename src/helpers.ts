@@ -102,8 +102,6 @@ export const replaceSVGHeight = (svgContent: string, heights: number[]) => {
   }
   */
 
-  console.log("heightsMap", heightsMap)
-
   const svgHeights = Array.from(heightsMap.values()).sort((a,b) => a[0] - b[0])
   
   for(let i = 0; i < svgHeights.length; i++){
@@ -117,8 +115,6 @@ export const replaceSVGHeight = (svgContent: string, heights: number[]) => {
       f.replace("$",String(prevHeight)), 
       f.replace("$",String(newHeight)))
   }
-
-  console.log("svgContent", svgContent, heights)
 
   return svgContent
 }

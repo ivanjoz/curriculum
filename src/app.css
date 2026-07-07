@@ -1,3 +1,5 @@
+@import 'tailwindcss';
+
 body {
   font-family: main, Arial, Helvetica, sans-serif;
   margin: 0;
@@ -16,7 +18,7 @@ body {
 }
 
 @font-face { 
-  font-family: 'main'; src: url(../public/libs/noto-sans-regular.woff2);
+  font-family: 'main'; src: url('/libs/noto-sans-regular.woff2');
   /* font-family: 'main'; src: url("/libs/open-sans-regular.woff2"); */
   /* font-family: 'main'; src: url("/libs/cofo_sans.woff2"); */
   /* font-family: 'main'; src: url("/libs/nunito-v12-latin-regular.woff"); */
@@ -24,7 +26,7 @@ body {
 @font-face { 
  /* font-family: 'bold'; src: url("/libs/open-sans-latin-700.woff2") */
  /* font-family: 'bold'; src: url("/libs/noto-sans-700.woff2") */
- font-family: 'bold'; src: url(../public/libs/roboto-latin-700.woff2)
+ font-family: 'bold'; src: url('/libs/roboto-latin-700.woff2')
 }
 
 .h5 {

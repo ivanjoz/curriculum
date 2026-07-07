@@ -1,22 +1,22 @@
-import hortifrutLogoSVG from '../public/images/logo-hortifrut.svg?raw'
-import logoYawiSVG from '../public/images/logo-yawi.svg?raw'
-import upworkLogoSVG from '../public/images/upwork-logo.svg?raw'
-import logoUnicoreSVG from '../public/images/logo-unicore.svg?raw'
-import equomLogoSVG from '../public/images/equom-logo.svg?raw'
+import hortifrutLogoSVG from './images/logo-hortifrut.svg?raw'
+import logoYawiSVG from './images/logo-yawi.svg?raw'
+import upworkLogoSVG from './images/upwork-logo.svg?raw'
+import logoUnicoreSVG from './images/logo-unicore.svg?raw'
+import equomLogoSVG from './images/equom-logo.svg?raw'
 
-import skill_comunicacion_svg from '../public/images/skill-comunicacion.svg?raw'
-import skill_cloud_svg from '../public/images/skill-cloud.svg?raw'
-import skill_coding_svg from '../public/images/skill-coding.svg?raw'
-import skill_agile_svg from '../public/images/skill-agile.svg?raw'
-import skill_languaje_svg from '../public/images/skill-languaje.svg?raw'
+import skill_comunicacion_svg from './images/skill-comunicacion.svg?raw'
+import skill_cloud_svg from './images/skill-cloud.svg?raw'
+import skill_coding_svg from './images/skill-coding.svg?raw'
+import skill_agile_svg from './images/skill-agile.svg?raw'
+import skill_languaje_svg from './images/skill-languaje.svg?raw'
 
-import platzi_logo_svg from '../public/images/platzi-logo2.svg?raw'
-import universidad_upao_svg from '../public/images/universidad_upao.svg?raw'
-import universidad_upn_svg from '../public/images/universidad_upn.svg?raw'
+import platzi_logo_svg from './images/platzi-logo2.svg?raw'
+import universidad_upao_svg from './images/universidad_upao.svg?raw'
+import universidad_upn_svg from './images/universidad_upn.svg?raw'
 
-import linkedin_icon_svg from '../public/images/linkedin-icon.svg?raw'
-import github_icon_svg from '../public/images/github-icon.svg?raw'
-import medium_icon_svg from '../public/images/medium-icon.svg?raw'
+import linkedin_icon_svg from './images/linkedin-icon.svg?raw'
+import github_icon_svg from './images/github-icon.svg?raw'
+import medium_icon_svg from './images/medium-icon.svg?raw'
 
 export const mainContent = {
   tecnologias: {
@@ -111,7 +111,7 @@ export const skills: ISkills[] = [
     icon: skill_comunicacion_svg,
     order1: 5, marginTop: -16,
   },
-  { desc: "Desarrollo enfocado en escabilidad y mantenibilidad en sistemas complejos",
+  { desc: "Desarrollo enfocado en escalabilidad y mantenibilidad en sistemas complejos",
     icon: skill_coding_svg,
     order1: 4,
   },
@@ -220,7 +220,7 @@ export const workExperience: IWordExperience[] = [
     "Desarrollo sobre servicios AWS como Lambda, S3, ECS, CloudFront, Athena, API-Gateway mediante SDK y CLI",
     "Coordinación con múltiples áreas para el levantamiento técnico-funcional de los proyectos de software" 
   ],
-    role: "Full Stack Developer",
+    role: "Senior Software Developer",
     logo: hortifrutLogoSVG,
     pdfCardHeight: 1.1
   },
@@ -306,10 +306,10 @@ export const foda: IFoda[] = [
   { name: 'FORTALEZAS',
     list: [
       'Balance entre habilidades técnicas y blandas',
-      'Experiencia en varios lenguajes y framework permite adoptar nuevas herramientas rápido',
+      'Experiencia en varios lenguajes y frameworks permite adoptar nuevas herramientas rápido',
       'Experiencia en arquitectura cloud / AWS',
       'Background en negocios, finanzas y operaciones en empresas industriales',
-      'Experiencia desarrollando sobre bases de código grandes con equipos multidiciplinarios',
+      'Experiencia desarrollando sobre bases de código grandes con equipos multidisciplinarios',
     ]
   },
   { name: 'DEBILIDADES',

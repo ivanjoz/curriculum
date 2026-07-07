@@ -1,13 +1,15 @@
 import pdf from 'pdfmake/build/pdfmake'
-import { Column, Content, TDocumentDefinitions } from 'pdfmake/interfaces'
 import * as d3 from "d3";
-import { ITechnologies, experienciaAdicional, skills, socialNetworks, technologies, ultimosProyectos, workExperience } from '~/content';
+import { experienciaAdicional, skills, socialNetworks, technologies, ultimosProyectos, workExperience } from '../content';
+import type { ITechnologies } from '../content';
 import cabecera_svg from '../images/cabecera_pdf_opt.svg?raw'
-import fondo1_svg from '../images/fondo_3.svg?raw'
-import icon_location from '../../public/images/icon-location.svg?raw'
-import icon_email from '../../public/images/email-icon.svg?raw'
+import icon_location from '../images/icon-location.svg?raw'
+import icon_email from '../images/email-icon.svg?raw'
 import circle_svg from '../images/circle.svg?raw'
-import { getContent, makeCardShadow, parseYear, replaceSVGColor, replaceSVGHeight } from '~/helpers';
+import { getContent, makeCardShadow, parseYear, replaceSVGColor } from '../helpers';
+
+type PdfNode = Record<string, any>
+type PdfColumn = Record<string, any>
 
 export const downloadPdf = async (returnAsBase64?: boolean) => {
   const origin = window.location.origin
@@ -23,17 +25,14 @@ export const downloadPdf = async (returnAsBase64?: boolean) => {
   const icon_location_1 = replaceSVGColor(icon_location, ["#435C81"])
   const icon_email_1 = replaceSVGColor(icon_email, ["#435C81"])
 
-  const makeText = (text: string, fontSize: number, lineHeight: number, alignment: string): Content => {
+  const makeText = (text: string, fontSize: number, lineHeight: number, alignment: string): PdfNode => {
     return {
       text,
       fontSize: fontSize || 10,
       lineHeight: lineHeight || 1,
       alignment,
-    } as Content
+    }
   }
-
-  const demo1 = replaceSVGHeight(fondo1_svg, [0.8,0.8,0.8,0.8,0.8,0.8])
-  console.log(demo1)
 
   const makeBulletLine = (text: string, lineHeight?: number, marginBottom?: number) => {
     return {
@@ -55,7 +54,7 @@ export const downloadPdf = async (returnAsBase64?: boolean) => {
   }
 
 
-  const socialIcons: Column[] = [{ width: "*", text: "" }]
+  const socialIcons: PdfColumn[] = [{ width: "*", text: "" }]
   for(let e of socialNetworks){
     socialIcons.push({
       width: 54,
@@ -80,7 +79,7 @@ export const downloadPdf = async (returnAsBase64?: boolean) => {
   socialIcons.push({ width: "*", text: "" })  
 
 
-  const workExperienceCards: Column[] = []
+  const workExperienceCards: PdfColumn[] = []
 
   for(let we of workExperience){
     if(!we.logo){ continue }
@@ -127,7 +126,7 @@ export const downloadPdf = async (returnAsBase64?: boolean) => {
     })
   }
 
-  const workExperienceCardGroupd: Column[][] = [[]]
+  const workExperienceCardGroupd: PdfColumn[][] = [[]]
 
   for(let we of workExperienceCards){
     let last = workExperienceCardGroupd[workExperienceCardGroupd.length - 1]
@@ -144,9 +143,9 @@ export const downloadPdf = async (returnAsBase64?: boolean) => {
     last.push(we)
   }
 
-  const skillsContent: Content[] = []
+  const skillsContent: PdfNode[] = []
 
-  let skillsRemain = [...skills].sort((a,b) => a.order1 - b.order1)
+  let skillsRemain = [...skills].sort((a,b) => (a.order1 ?? 0) - (b.order1 ?? 0))
 
   let tryCount = 0
 
@@ -155,7 +154,7 @@ export const downloadPdf = async (returnAsBase64?: boolean) => {
     const group = skillsRemain.slice(0, 2)
     skillsRemain = skillsRemain.filter(e => !group.includes(e))
 
-    const columns: Column[] = []
+    const columns: PdfColumn[] = []
     for(let sk of group){
       columns.push({
         width: "*",
@@ -185,7 +184,7 @@ export const downloadPdf = async (returnAsBase64?: boolean) => {
     })
   }
 
-  const docDefinition: TDocumentDefinitions = {
+  const docDefinition: any = {
     pageMargins: [ 25, 25, 25, 25 ],
     content: [
       {
@@ -375,32 +374,7 @@ export const downloadPdf = async (returnAsBase64?: boolean) => {
       resolve(base64data as string)
     }
   })
-  console.log("base64data::", base64String)
-  debugger
   return base64String
-  // const buffer = await pdfDoc.bufferPromise  
-  /*
-  console.log("pdfdoc::", buffer, pdfDoc, returnAsBase64)
-  if(returnAsBase64){
-    debugger
-    let b64
-    try { 
-      b64 = await (new Promise<string>(resolve => {
-        pdfDoc.getBlob((b64String: string) => {     
-          console.log("b64String 123", b64String)     
-          resolve(b64String)
-        })
-      }))
-      console.log("b64String promise", b64)
-    } catch(e){
-      console.error(e)
-    }
-    debugger
-    return b64
-  } else {
-    pdfDoc.download("ivan_angulo_cv_peru.pdf")
-  }
-  */
 }
 
 export const makeCabecera = async () => {
@@ -408,12 +382,12 @@ export const makeCabecera = async () => {
   const profilePhotoRequest = await fetch("/images/ivan-angulo-profile2.jpeg")
   const profilePhoto = await profilePhotoRequest.blob()
 
-  const profilePhotoB64 = await new Promise((resolve, reject) => {
+  const profilePhotoB64 = await new Promise<string>((resolve) => {
     const reader = new FileReader()
     reader.readAsDataURL(profilePhoto)
     reader.onloadend = () => {
       const base64data = reader.result
-      resolve(base64data)
+      resolve(base64data as string)
     }
   })
 

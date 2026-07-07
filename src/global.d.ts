@@ -1,5 +1,6 @@
-/// <reference types="@solidjs/start/env" />
+/// <reference types="@sveltejs/kit" />
 
-declare module "*.module.css";
-declare module "*.module.scss";
-declare module "*.svg?raw";
+interface Window {
+	dataLayer: unknown[];
+	gtag: (...args: unknown[]) => void;
+}
